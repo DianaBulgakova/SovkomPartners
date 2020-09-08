@@ -3,27 +3,69 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		545CB69FC99177DFDE03AB91 /* Pods_SovkomPartners.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB1AADD6FF2FE787B360B13B /* Pods_SovkomPartners.framework */; };
+		8403C27B25065EE900A7A8EB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403C27A25065EE900A7A8EB /* Constants.swift */; };
+		8403C27D2507860400A7A8EB /* swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 8403C27C2507860400A7A8EB /* swiftlint.yml */; };
 		842F1B802500F30500689CCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F1B7F2500F30500689CCB /* AppDelegate.swift */; };
 		842F1B822500F30500689CCB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F1B812500F30500689CCB /* SceneDelegate.swift */; };
-		842F1B842500F30500689CCB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F1B832500F30500689CCB /* ViewController.swift */; };
-		842F1B872500F30500689CCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 842F1B852500F30500689CCB /* Main.storyboard */; };
 		842F1B892500F30600689CCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842F1B882500F30600689CCB /* Assets.xcassets */; };
 		842F1B8C2500F30600689CCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 842F1B8A2500F30600689CCB /* LaunchScreen.storyboard */; };
+		842F1B972500F48900689CCB /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F1B952500F48900689CCB /* MainController.swift */; };
+		842F1B982500F48900689CCB /* MainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842F1B962500F48900689CCB /* MainController.xib */; };
+		842F1B9F2500F9A400689CCB /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F1B9D2500F9A400689CCB /* CategoryCell.swift */; };
+		842F1BA02500F9A400689CCB /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842F1B9E2500F9A400689CCB /* CategoryCell.xib */; };
+		842F1BA22501135D00689CCB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F1BA12501135D00689CCB /* Category.swift */; };
+		842F1BA7250127FF00689CCB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F1BA6250127FF00689CCB /* NetworkManager.swift */; };
+		842F1BAA2503A68800689CCB /* PromoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F1BA82503A68800689CCB /* PromoCell.swift */; };
+		842F1BAB2503A68800689CCB /* PromoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842F1BA92503A68800689CCB /* PromoCell.xib */; };
+		842F1BAD2503A71900689CCB /* Promo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F1BAC2503A71900689CCB /* Promo.swift */; };
+		842F1BEB2503F1BD00689CCB /* PromosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F1BE92503F1BD00689CCB /* PromosCell.swift */; };
+		842F1BF32504E0D000689CCB /* SearchPartnerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F1BF12504E0D000689CCB /* SearchPartnerController.swift */; };
+		842F1BF42504E0D000689CCB /* SearchPartnerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842F1BF22504E0D000689CCB /* SearchPartnerController.xib */; };
+		842F1BFE2504FA2B00689CCB /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F1BFD2504FA2B00689CCB /* HeaderView.swift */; };
+		842F1C022504FB6200689CCB /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842F1C012504FB6200689CCB /* HeaderView.xib */; };
+		842F1C0425052ABD00689CCB /* MainSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F1C0325052ABD00689CCB /* MainSection.swift */; };
+		842F1C0725056CF700689CCB /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F1C0525056CF700689CCB /* BannerCell.swift */; };
+		842F1C0825056CF700689CCB /* BannerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842F1C0625056CF700689CCB /* BannerCell.xib */; };
+		842F1C0A2505700C00689CCB /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F1C092505700C00689CCB /* Banner.swift */; };
+		842F1C0C2505715400689CCB /* BannersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F1C0B2505715400689CCB /* BannersCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		64FCABEB9AFECC7BF46DAE33 /* Pods-SovkomPartners.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SovkomPartners.release.xcconfig"; path = "Target Support Files/Pods-SovkomPartners/Pods-SovkomPartners.release.xcconfig"; sourceTree = "<group>"; };
+		71D5BE84E0BA7473A6F3B643 /* Pods-SovkomPartners.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SovkomPartners.debug.xcconfig"; path = "Target Support Files/Pods-SovkomPartners/Pods-SovkomPartners.debug.xcconfig"; sourceTree = "<group>"; };
+		8403C27A25065EE900A7A8EB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8403C27C2507860400A7A8EB /* swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftlint.yml; sourceTree = "<group>"; };
 		842F1B7C2500F30500689CCB /* SovkomPartners.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SovkomPartners.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		842F1B7F2500F30500689CCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		842F1B812500F30500689CCB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		842F1B832500F30500689CCB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		842F1B862500F30500689CCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		842F1B882500F30600689CCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		842F1B8B2500F30600689CCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		842F1B8D2500F30600689CCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		842F1B952500F48900689CCB /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		842F1B962500F48900689CCB /* MainController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainController.xib; sourceTree = "<group>"; };
+		842F1B9D2500F9A400689CCB /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		842F1B9E2500F9A400689CCB /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
+		842F1BA12501135D00689CCB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		842F1BA6250127FF00689CCB /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		842F1BA82503A68800689CCB /* PromoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoCell.swift; sourceTree = "<group>"; };
+		842F1BA92503A68800689CCB /* PromoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PromoCell.xib; sourceTree = "<group>"; };
+		842F1BAC2503A71900689CCB /* Promo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Promo.swift; sourceTree = "<group>"; };
+		842F1BE92503F1BD00689CCB /* PromosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromosCell.swift; sourceTree = "<group>"; };
+		842F1BF12504E0D000689CCB /* SearchPartnerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPartnerController.swift; sourceTree = "<group>"; };
+		842F1BF22504E0D000689CCB /* SearchPartnerController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchPartnerController.xib; sourceTree = "<group>"; };
+		842F1BFD2504FA2B00689CCB /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		842F1C012504FB6200689CCB /* HeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
+		842F1C0325052ABD00689CCB /* MainSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSection.swift; sourceTree = "<group>"; };
+		842F1C0525056CF700689CCB /* BannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
+		842F1C0625056CF700689CCB /* BannerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerCell.xib; sourceTree = "<group>"; };
+		842F1C092505700C00689CCB /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
+		842F1C0B2505715400689CCB /* BannersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannersCell.swift; sourceTree = "<group>"; };
+		BB1AADD6FF2FE787B360B13B /* Pods_SovkomPartners.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SovkomPartners.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,16 +73,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				545CB69FC99177DFDE03AB91 /* Pods_SovkomPartners.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37DC41D28A7C80C31F715F3B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BB1AADD6FF2FE787B360B13B /* Pods_SovkomPartners.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		842F1B732500F30500689CCB = {
 			isa = PBXGroup;
 			children = (
 				842F1B7E2500F30500689CCB /* SovkomPartners */,
+				37DC41D28A7C80C31F715F3B /* Frameworks */,
+				969474D04E8B7D32F60F5A26 /* Pods */,
 				842F1B7D2500F30500689CCB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,15 +109,123 @@
 		842F1B7E2500F30500689CCB /* SovkomPartners */ = {
 			isa = PBXGroup;
 			children = (
-				842F1B7F2500F30500689CCB /* AppDelegate.swift */,
-				842F1B812500F30500689CCB /* SceneDelegate.swift */,
-				842F1B832500F30500689CCB /* ViewController.swift */,
-				842F1B852500F30500689CCB /* Main.storyboard */,
-				842F1B882500F30600689CCB /* Assets.xcassets */,
-				842F1B8A2500F30600689CCB /* LaunchScreen.storyboard */,
-				842F1B8D2500F30600689CCB /* Info.plist */,
+				842F1B932500F35000689CCB /* App */,
+				842F1B942500F38000689CCB /* Source */,
+				842F1B9C2500F51500689CCB /* SupportingFiles */,
 			);
 			path = SovkomPartners;
+			sourceTree = "<group>";
+		};
+		842F1B932500F35000689CCB /* App */ = {
+			isa = PBXGroup;
+			children = (
+				842F1B7F2500F30500689CCB /* AppDelegate.swift */,
+				842F1B812500F30500689CCB /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		842F1B942500F38000689CCB /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				842F1B952500F48900689CCB /* MainController.swift */,
+				842F1B962500F48900689CCB /* MainController.xib */,
+				842F1BF12504E0D000689CCB /* SearchPartnerController.swift */,
+				842F1BF22504E0D000689CCB /* SearchPartnerController.xib */,
+				842F1B992500F49B00689CCB /* Cells */,
+				842F1B9A2500F4C000689CCB /* Managers */,
+				842F1B9B2500F4DC00689CCB /* Models */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		842F1B992500F49B00689CCB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				842F1C0F250572FC00689CCB /* Banner */,
+				842F1C0E250572D600689CCB /* Promo */,
+				842F1C0D250572B400689CCB /* Category */,
+				842F1C102505730C00689CCB /* Header */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		842F1B9A2500F4C000689CCB /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				842F1BA6250127FF00689CCB /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		842F1B9B2500F4DC00689CCB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				842F1BA12501135D00689CCB /* Category.swift */,
+				842F1BAC2503A71900689CCB /* Promo.swift */,
+				842F1C092505700C00689CCB /* Banner.swift */,
+				842F1C0325052ABD00689CCB /* MainSection.swift */,
+				8403C27A25065EE900A7A8EB /* Constants.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		842F1B9C2500F51500689CCB /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				842F1B882500F30600689CCB /* Assets.xcassets */,
+				842F1B8D2500F30600689CCB /* Info.plist */,
+				842F1B8A2500F30600689CCB /* LaunchScreen.storyboard */,
+				8403C27C2507860400A7A8EB /* swiftlint.yml */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		842F1C0D250572B400689CCB /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				842F1B9D2500F9A400689CCB /* CategoryCell.swift */,
+				842F1B9E2500F9A400689CCB /* CategoryCell.xib */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		842F1C0E250572D600689CCB /* Promo */ = {
+			isa = PBXGroup;
+			children = (
+				842F1BE92503F1BD00689CCB /* PromosCell.swift */,
+				842F1BA82503A68800689CCB /* PromoCell.swift */,
+				842F1BA92503A68800689CCB /* PromoCell.xib */,
+			);
+			path = Promo;
+			sourceTree = "<group>";
+		};
+		842F1C0F250572FC00689CCB /* Banner */ = {
+			isa = PBXGroup;
+			children = (
+				842F1C0B2505715400689CCB /* BannersCell.swift */,
+				842F1C0525056CF700689CCB /* BannerCell.swift */,
+				842F1C0625056CF700689CCB /* BannerCell.xib */,
+			);
+			path = Banner;
+			sourceTree = "<group>";
+		};
+		842F1C102505730C00689CCB /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				842F1BFD2504FA2B00689CCB /* HeaderView.swift */,
+				842F1C012504FB6200689CCB /* HeaderView.xib */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		969474D04E8B7D32F60F5A26 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				71D5BE84E0BA7473A6F3B643 /* Pods-SovkomPartners.debug.xcconfig */,
+				64FCABEB9AFECC7BF46DAE33 /* Pods-SovkomPartners.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +235,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 842F1B902500F30600689CCB /* Build configuration list for PBXNativeTarget "SovkomPartners" */;
 			buildPhases = (
+				F1E0F76D66793C01168DD020 /* [CP] Check Pods Manifest.lock */,
 				842F1B782500F30500689CCB /* Sources */,
 				842F1B792500F30500689CCB /* Frameworks */,
 				842F1B7A2500F30500689CCB /* Resources */,
+				8403C27E2507863C00A7A8EB /* SwiftLint */,
+				0158333D53C88539478D2750 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,36 +289,107 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				842F1BA02500F9A400689CCB /* CategoryCell.xib in Resources */,
 				842F1B8C2500F30600689CCB /* LaunchScreen.storyboard in Resources */,
 				842F1B892500F30600689CCB /* Assets.xcassets in Resources */,
-				842F1B872500F30500689CCB /* Main.storyboard in Resources */,
+				842F1C022504FB6200689CCB /* HeaderView.xib in Resources */,
+				842F1B982500F48900689CCB /* MainController.xib in Resources */,
+				842F1C0825056CF700689CCB /* BannerCell.xib in Resources */,
+				842F1BF42504E0D000689CCB /* SearchPartnerController.xib in Resources */,
+				8403C27D2507860400A7A8EB /* swiftlint.yml in Resources */,
+				842F1BAB2503A68800689CCB /* PromoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0158333D53C88539478D2750 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SovkomPartners/Pods-SovkomPartners-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SovkomPartners/Pods-SovkomPartners-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SovkomPartners/Pods-SovkomPartners-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8403C27E2507863C00A7A8EB /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" --config \"${SRCROOT}/SovkomPartners/SupportingFiles/swiftlint.yml\"\n";
+		};
+		F1E0F76D66793C01168DD020 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SovkomPartners-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		842F1B782500F30500689CCB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				842F1B842500F30500689CCB /* ViewController.swift in Sources */,
+				842F1C0C2505715400689CCB /* BannersCell.swift in Sources */,
+				842F1BF32504E0D000689CCB /* SearchPartnerController.swift in Sources */,
+				842F1BA22501135D00689CCB /* Category.swift in Sources */,
+				842F1B9F2500F9A400689CCB /* CategoryCell.swift in Sources */,
+				842F1C0725056CF700689CCB /* BannerCell.swift in Sources */,
 				842F1B802500F30500689CCB /* AppDelegate.swift in Sources */,
+				842F1BAD2503A71900689CCB /* Promo.swift in Sources */,
+				8403C27B25065EE900A7A8EB /* Constants.swift in Sources */,
+				842F1BA7250127FF00689CCB /* NetworkManager.swift in Sources */,
+				842F1B972500F48900689CCB /* MainController.swift in Sources */,
+				842F1BFE2504FA2B00689CCB /* HeaderView.swift in Sources */,
 				842F1B822500F30500689CCB /* SceneDelegate.swift in Sources */,
+				842F1BAA2503A68800689CCB /* PromoCell.swift in Sources */,
+				842F1C0A2505700C00689CCB /* Banner.swift in Sources */,
+				842F1C0425052ABD00689CCB /* MainSection.swift in Sources */,
+				842F1BEB2503F1BD00689CCB /* PromosCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		842F1B852500F30500689CCB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				842F1B862500F30500689CCB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		842F1B8A2500F30600689CCB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -282,10 +517,11 @@
 		};
 		842F1B912500F30600689CCB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71D5BE84E0BA7473A6F3B643 /* Pods-SovkomPartners.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = SovkomPartners/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SovkomPartners/SupportingFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -299,10 +535,11 @@
 		};
 		842F1B922500F30600689CCB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64FCABEB9AFECC7BF46DAE33 /* Pods-SovkomPartners.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = SovkomPartners/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SovkomPartners/SupportingFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

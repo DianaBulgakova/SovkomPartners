@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="JAR-MP-ybN" customClass="HeaderView" customModule="SovkomPartners" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="207"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dux-EC-jJa">
+                    <rect key="frame" x="12" y="112" width="57" height="27"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0SA-6G-vtj">
+                    <rect key="frame" x="356" y="110.5" width="46" height="30"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="buttonPressed" destination="JAR-MP-ybN" eventType="touchUpInside" id="fWx-1W-Y44"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="dux-EC-jJa" firstAttribute="leading" secondItem="G6p-bk-XRk" secondAttribute="leading" constant="12" id="81h-qr-MUp"/>
+                <constraint firstItem="0SA-6G-vtj" firstAttribute="centerY" secondItem="G6p-bk-XRk" secondAttribute="centerY" id="88S-zn-Tdw"/>
+                <constraint firstItem="G6p-bk-XRk" firstAttribute="trailing" secondItem="0SA-6G-vtj" secondAttribute="trailing" constant="12" id="F4g-6v-dHg"/>
+                <constraint firstItem="dux-EC-jJa" firstAttribute="centerY" secondItem="G6p-bk-XRk" secondAttribute="centerY" id="X6y-yu-4qq"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="G6p-bk-XRk"/>
+            <connections>
+                <outlet property="button" destination="0SA-6G-vtj" id="FMH-ov-Cvb"/>
+                <outlet property="title" destination="dux-EC-jJa" id="o0I-xf-kd2"/>
+            </connections>
+            <point key="canvasLocation" x="116" y="-178"/>
+        </view>
+    </objects>
+</document>

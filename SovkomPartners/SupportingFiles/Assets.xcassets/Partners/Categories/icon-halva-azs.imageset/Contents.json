@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "icon-halva-azs.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

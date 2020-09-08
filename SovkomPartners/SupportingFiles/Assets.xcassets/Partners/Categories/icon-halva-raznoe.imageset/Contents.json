@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "icon-halva-raznoe.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -1,0 +1,172 @@
+disabled_rules:
+ - trailing_whitespace # useless rule
+ - file_length
+ - line_length
+ - no_fallthrough_only
+ - unused_setter_value
+ - trailing_closure
+ - extension_access_modifier
+ - implicit_getter
+
+opt_in_rules:
+ - array_init
+ - empty_count
+ - closure_spacing
+ - explicit_init
+ - contains_over_first_not_nil
+ - fatal_error_message
+ - first_where
+ - let_var_whitespace
+ - joined_default_parameter
+ - literal_expression_end_indentation
+ - nimble_operator
+ - operator_usage_whitespace
+ - overridden_super_call
+ - pattern_matching_keywords
+ - prohibited_super_call
+ - redundant_nil_coalescing
+ - sorted_first_last
+ - yoda_condition
+ - vertical_parameter_alignment_on_call
+ - unneeded_parentheses_in_closure_argument
+ - empty_string
+ - convenience_type
+ - multiline_function_chains
+ - multiline_parameters
+ - unavailable_function
+ - force_unwrapping
+ - implicitly_unwrapped_optional
+ - override_in_extension
+
+#--------------#
+#     todo     #
+#--------------#
+
+#- discouraged_optional_boolean
+#- discouraged_optional_collection
+#- object_literal
+
+#--------------#
+#   possible   #
+#--------------#
+
+#- redundant_type_annotation
+#- required_enum_case
+#- switch_case_on_newline
+#- untyped_error_in_catch
+#- explicit_enum_raw_value
+#- explicit_type_interface
+#- number_separator # 1_000_000
+#- override_in_extension
+#- private_action
+#- private_outlet
+
+#--------------#
+#   disable    #
+#--------------#
+
+#- file_name
+#- file_header
+#- attributes
+#- closure_end_indentation
+#- quick_discouraged_call
+#- quick_discouraged_focused_test
+#- quick_discouraged_pending_test
+#- single_test_class
+
+#--------------#
+
+included:
+ - SovkomPartners
+excluded:
+ - Carthage
+ - Pods
+
+
+# configurable rules can be customized from this configuration file
+# binary rules can set their severity level
+
+force_cast: error
+force_try: error
+force_unwrapping: error
+implicitly_unwrapped_optional: error
+
+void_return: warning
+unused_optional_binding: warning
+class_delegate_protocol: warning
+empty_count: warning
+opening_brace: warning
+multiple_closures_with_trailing_closure: warning
+legacy_constructor: warning
+unused_closure_parameter: warning
+closure_parameter_position: warning
+vertical_whitespace: warning
+shorthand_operator: warning
+for_where: warning
+mark: warning
+control_statement: warning
+coma: warning
+colon: warning
+
+additional_allowed_characters:
+ - '_'
+
+identifier_name:
+ min_length: 3
+ max_length: 100
+ excluded:
+  - id
+  - ID
+  - x
+  - X
+  - y
+  - Y
+  - z
+  - Z
+  - to
+
+type_name:
+ min_length: 3
+ max_length:
+   warning: 40
+   error: 50
+ excluded:
+   - X
+   - Y
+   - Z
+
+type_body_length:
+  warning: 1000
+  error: 1200
+
+nesting:
+  type_level:
+    warning: 3
+    error: 5
+  statement_level:
+    warning: 10
+
+trailing_comma:
+  mandatory_comma: true
+
+cyclomatic_complexity:
+  warning: 50
+  error: 70
+
+large_tuple:
+  warning: 3
+  error: 5
+
+function_parameter_count:
+  warning: 7
+  error: 10
+
+#----------------#
+# not triggering #
+#----------------#
+
+function_body_length:
+  warning: 300
+  error: 1000
+
+reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji, sonarqube)

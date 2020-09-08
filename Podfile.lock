@@ -1,0 +1,28 @@
+PODS:
+  - SwiftClasses (1.0.0)
+  - SwiftLint (0.40.1)
+
+DEPENDENCIES:
+  - SwiftClasses (from `https://github.com/ubank/SwiftClasses.git`)
+  - SwiftLint
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - SwiftLint
+
+EXTERNAL SOURCES:
+  SwiftClasses:
+    :git: https://github.com/ubank/SwiftClasses.git
+
+CHECKOUT OPTIONS:
+  SwiftClasses:
+    :commit: 440fc5cdad615998ee6550306e3e81a31d6882d3
+    :git: https://github.com/ubank/SwiftClasses.git
+
+SPEC CHECKSUMS:
+  SwiftClasses: a24d4dfa451ea3b0c8c9ace5e268e11470ea7eff
+  SwiftLint: bbfed21bf4451dcbd0f5cdbee44a18e06cf91b12
+
+PODFILE CHECKSUM: 0a713df683e8d11dfaa7c7a30e22fb5711529a75
+
+COCOAPODS: 1.9.3
