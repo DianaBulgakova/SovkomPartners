@@ -144,6 +144,14 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
+        let category = categories[indexPath.row]
+        
+        let controller = CategoryController(category: category)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView,
                    heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = sections[indexPath.section]
         

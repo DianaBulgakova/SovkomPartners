@@ -29,7 +29,6 @@ class BannerCell: UICollectionViewCell {
         
         iconView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         iconView.layer.cornerRadius = 10
-
     }
     
     func setup(banner: Banner?) {

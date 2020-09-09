@@ -17,6 +17,8 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }
         
+        UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+        
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = UINavigationController(rootViewController: MainController())
         window?.makeKeyAndVisible()

@@ -88,6 +88,24 @@ final class NetworkManager {
         }
     }
     
+    func shops(categoryId: String, completion: @escaping (([Shop]?) -> Void)) {
+        guard let url = URL(string: "https://backoffice.halvacard.ru/public-api/categoryWithShops?id=\(categoryId)") else { return }
+        
+        dataTask(url: url) { data in
+            if let data = data {
+                do {
+                    let shop = try self.decoder.decode(ShopRequest.self, from: data)
+                    completion(shop.shops)
+                    return
+                } catch {
+                    print(error)
+                }
+            }
+            
+            completion(nil)
+        }
+    }
+    
     private func dataTask(url: URL, completion: @escaping ((Data?) -> Void)) {
         let task = session.dataTask(with: url) { data, _, _ in
             DispatchQueue.main.async {
