@@ -239,7 +239,6 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
 extension MainController: PromosCellDelegate {
     
     func selectedPromo(_ promo: Promo) {
-        print(promo.id)
         let controller = PromoController(promo: promo)
         navigationController?.pushViewController(controller, animated: true)
     }
