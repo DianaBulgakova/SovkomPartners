@@ -47,15 +47,45 @@ final class MainController: UIViewController {
         return sections
     }
     
+    private lazy var refreshControl: UIRefreshControl = {
+        let refresh = UIRefreshControl()
+        
+        refresh.tintColor = .gray
+        refresh.addTarget(self, action: #selector(updateInfo), for: .valueChanged)
+    
+        return refresh
+    }()
+    
+    private lazy var cityButton: UIButton = {
+        let button = UIButton()
+        
+        button.title = "Город не выбран"
+        button.titleColor = .black
+        button.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        button.addTarget(self, action: #selector(selectCity), for: .touchUpInside)
+        
+        return button
+    }()
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Город не выбран"
+        navigationItem.titleView = cityButton
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(addTapped))
         
+        setupTableView()
+        
+        view.showActivityIndicator()
+        updateInfo()
+        
+        navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+        navigationController?.navigationBar.barTintColor = .white
+    }
+    
+    private func setupTableView() {
         tableView.register(UINib(nibName: CategoryCell.cellReuseIdentifier, bundle: nil), forCellReuseIdentifier: CategoryCell.cellReuseIdentifier)
         tableView.register(PromosCell.self, forCellReuseIdentifier: PromosCell.cellReuseIdentifier)
         tableView.register(BannersCell.self, forCellReuseIdentifier: BannersCell.cellReuseIdentifier)
@@ -63,14 +93,18 @@ final class MainController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        tableView.tableFooterView = UIView()
+       
         tableView.showsVerticalScrollIndicator = false
+        tableView.refreshControl = refreshControl
         
-        view.showActivityIndicator()
-        updateInfo()
+        tableView.contentInset.top = 16
+        
+        var frame = CGRect.zero
+        frame.size.height = .leastNormalMagnitude
+        tableView.tableHeaderView = UIView(frame: frame)
     }
     
+    @objc
     private func updateInfo() {
         let group = DispatchGroup()
         
@@ -94,12 +128,19 @@ final class MainController: UIViewController {
         
         group.notify(queue: .main) { [weak self] in
             self?.view.hideActivityIndicator()
+            self?.refreshControl.endRefreshing()
         }
     }
     
     @objc
     private func addTapped() {
         let controller = SearchPartnerController()
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    @objc
+    private func selectCity() {
+        let controller = SearchCityController()
         navigationController?.pushViewController(controller, animated: true)
     }
 }
@@ -124,12 +165,14 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BannersCell.cellReuseIdentifier) as? BannersCell else { return UITableViewCell() }
             
             cell.banners = banners
+            cell.delegate = self
             
             return cell
         case .promos:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PromosCell.cellReuseIdentifier) as? PromosCell else { return UITableViewCell() }
             
             cell.promos = promos
+            cell.delegate = self
             
             return cell
         case .categories:
@@ -172,6 +215,11 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
         return section.kind.headerTitle != nil ? 60 : 0
     }
     
+    func tableView(_ tableView: UITableView,
+                   heightForFooterInSection section: Int) -> CGFloat {
+        return .leastNormalMagnitude
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let section = sections[section]
         
@@ -180,7 +228,45 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
         
         header.title.text = sectionTitle
         header.button.title = section.kind.headerButtonTitle
+        header.tag = section.kind.rawValue
+        
+        header.delegate = self
         
         return header
+    }
+}
+
+extension MainController: PromosCellDelegate {
+    
+    func selectedPromo(_ promo: Promo) {
+        print(promo.id)
+        let controller = PromoController(promo: promo)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
+extension MainController: BannersCellDelegate {
+    
+    func selectedBanner(_ banner: Banner) {
+        let controller = PromoController(banner: banner)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
+extension MainController: HeaderViewDelegate {
+    
+    func buttonTapped(_ header: HeaderView) {
+        guard let section = MainSection.Kind(rawValue: header.tag) else { return }
+        
+        switch section {
+        case .banners:
+            return
+        case .promos:
+            let controller = AllPromosController()
+            navigationController?.pushViewController(controller, animated: true)
+        case .categories:
+            let controller = MapController()
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }

@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol BannersCellDelegate: class {
+    
+    func selectedBanner(_ banner: Banner)
+}
+
 class BannersCell: UITableViewCell {
+    
+    weak var delegate: BannersCellDelegate?
     
     static let cellReuseIdentifier = "BannersCell"
     
@@ -124,6 +131,12 @@ extension BannersCell: UICollectionViewDataSource, UICollectionViewDelegate {
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+           let banner = banners[indexPath.row]
+           
+           delegate?.selectedBanner(banner)
+       }
 }
 
 extension BannersCell: UIScrollViewDelegate {

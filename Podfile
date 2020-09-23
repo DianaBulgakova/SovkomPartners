@@ -8,7 +8,7 @@ inhibit_all_warnings!
 
 target 'SovkomPartners' do
   pod 'SwiftLint'
-  pod 'SwiftClasses', :git => 'https://github.com/ubank/SwiftClasses.git'
+  pod 'SwiftClasses', :git => 'https://github.com/akhakimzyanov/SwiftClasses.git'
 end
 
 post_install do |installer|

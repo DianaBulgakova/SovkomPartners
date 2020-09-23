@@ -21,9 +21,9 @@ final class NetworkManager {
     }()
     
     func categories(completion: @escaping (([Category]?) -> Void)) {
-        guard let url = URL(string: "https://backoffice.halvacard.ru/public-api/categories") else { return }
+        let request = RequestProvider.categories()
         
-        dataTask(url: url) { data in
+        dataTask(urlRequest: request) { data in
             if let data = data {
                 do {
                     let categories = try self.decoder.decode([Category].self, from: data)
@@ -38,28 +38,14 @@ final class NetworkManager {
         }
     }
     
-//    func categoriesDict(completion: @escaping (([Category]?) -> Void)) {
-//        guard let url = URL(string: "https://backoffice.halvacard.ru/public-api/categories") else { return }
-//
-//        dataTask(url: url) { data in
-//            if let data = data,
-//                let array = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]] {
-//                let categories = array.compactMap { Category(dictionary: $0) }
-//                completion(categories)
-//            } else {
-//                completion(nil)
-//            }
-//        }
-//    }
-    
     func promos(completion: @escaping (([Promo]?) -> Void)) {
-        guard let url = URL(string: "https://backoffice.halvacard.ru/public-api/promos") else { return }
+        let request = RequestProvider.promos()
         
-        dataTask(url: url) { data in
+        dataTask(urlRequest: request) { data in
             if let data = data {
                 do {
-                    let promos = try self.decoder.decode([Promo].self, from: data)
-                    completion(promos)
+                    let promo = try self.decoder.decode(PromoRequest.self, from: data)
+                    completion(promo.promos)
                     return
                 } catch {
                     print(error)
@@ -71,9 +57,9 @@ final class NetworkManager {
     }
     
     func banners(completion: @escaping (([Banner]?) -> Void)) {
-        guard let url = URL(string: "https://backoffice.halvacard.ru/public-api/banners") else { return }
+        let request = RequestProvider.banners()
         
-        dataTask(url: url) { data in
+        dataTask(urlRequest: request) { data in
             if let data = data {
                 do {
                     let banner = try self.decoder.decode(BannerRequest.self, from: data)
@@ -88,10 +74,10 @@ final class NetworkManager {
         }
     }
     
-    func shops(categoryId: String, completion: @escaping (([Shop]?) -> Void)) {
-        guard let url = URL(string: "https://backoffice.halvacard.ru/public-api/categoryWithShops?id=\(categoryId)") else { return }
+    func shops(categoryId: String, page: Int, completion: @escaping (([Shop]?) -> Void)) {
+        let request = RequestProvider.stores(categoryId: categoryId, page: page, filters: nil)
         
-        dataTask(url: url) { data in
+        dataTask(urlRequest: request) { data in
             if let data = data {
                 do {
                     let shop = try self.decoder.decode(ShopRequest.self, from: data)
@@ -106,8 +92,10 @@ final class NetworkManager {
         }
     }
     
-    private func dataTask(url: URL, completion: @escaping ((Data?) -> Void)) {
-        let task = session.dataTask(with: url) { data, _, _ in
+    private func dataTask(urlRequest: URLRequest?, completion: @escaping ((Data?) -> Void)) {
+        guard let urlRequest = urlRequest else { return }
+        
+        let task = session.dataTask(with: urlRequest) { data, _, _ in
             DispatchQueue.main.async {
                 completion(data)
             }

@@ -21,7 +21,7 @@ struct MainSection {
 
 extension MainSection {
     
-    enum Kind {
+    enum Kind: Int {
         
         case banners
         case promos

@@ -11,4 +11,5 @@ import UIKit
 enum Constants {
     
     static let sideOffset: CGFloat = 16
+    static let paginationLimit = 30
 }

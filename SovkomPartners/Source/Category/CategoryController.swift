@@ -10,6 +10,9 @@ import UIKit
 
 class CategoryController: UIViewController {
     
+    private var canLoadMore = false
+    private var page = 0
+    
     private var shops = [Shop]() {
         didSet {
             collectionView.reloadData()
@@ -28,15 +31,15 @@ class CategoryController: UIViewController {
         
         layout.scrollDirection = .vertical
         
-        layout.itemSize = Self.cellSize
         layout.minimumLineSpacing = Self.minimumLineSpacing
         layout.minimumInteritemSpacing = Self.minimumInteritemSpacing
         layout.sectionInset = UIEdgeInsets(top: 0, left: Constants.sideOffset, bottom: 0, right: Constants.sideOffset)
         
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
-        view.register(UINib(nibName: CategoryPartnerCell.cellReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CategoryPartnerCell.cellReuseIdentifier)
+        view.register(UINib(nibName: PartnerCell.cellReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: PartnerCell.cellReuseIdentifier)
         view.register(UINib(nibName: HeaderReusableView.reuseIdentifier, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderReusableView.reuseIdentifier)
+        view.register(UINib(nibName: IndicatorCell.cellReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: IndicatorCell.cellReuseIdentifier)
         
         view.backgroundColor = .white
         view.clipsToBounds = false
@@ -46,6 +49,15 @@ class CategoryController: UIViewController {
         
         return view
     }()
+    
+    private lazy var refreshControl: UIRefreshControl = {
+          let refresh = UIRefreshControl()
+          
+          refresh.tintColor = .gray
+          refresh.addTarget(self, action: #selector(updateInfo), for: .valueChanged)
+      
+          return refresh
+      }()
     
     convenience init(category: Category?) {
         self.init()
@@ -59,6 +71,8 @@ class CategoryController: UIViewController {
         title = category?.title
         
         setupViews()
+        
+        view.showActivityIndicator()
         updateInfo()
     }
     
@@ -69,13 +83,23 @@ class CategoryController: UIViewController {
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        collectionView.refreshControl = refreshControl
     }
     
+    @objc
     private func updateInfo() {
         guard let categoryId = category?.id else { return }
-        
-        NetworkManager.shared.shops(categoryId: categoryId) { shops in
-            self.shops = shops ?? []
+ 
+        NetworkManager.shared.shops(categoryId: categoryId, page: page) { [weak self] shops in
+            guard let self = self else { return }
+            
+            let newShops = shops ?? []
+            self.shops += newShops
+            self.canLoadMore = Constants.paginationLimit == newShops.count
+            self.page += 1
+            self.view.hideActivityIndicator()
+            self.refreshControl.endRefreshing()
         }
     }
 }
@@ -84,18 +108,29 @@ extension CategoryController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return shops.count
+        return shops.count + (canLoadMore ? 1 : 0)
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryPartnerCell.cellReuseIdentifier, for: indexPath) as? CategoryPartnerCell else { return UICollectionViewCell() }
-        
-        let shop = shops[indexPath.row]
-        
-        cell.setup(shop: shop)
-        
-        return cell
+        switch indexPath.row {
+        case 0..<shops.count:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PartnerCell.cellReuseIdentifier, for: indexPath) as? PartnerCell else { return UICollectionViewCell() }
+            
+            let shop = shops[indexPath.row]
+            
+            cell.setup(shop: shop)
+            
+            return cell
+        default:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IndicatorCell.cellReuseIdentifier, for: indexPath) as? IndicatorCell else { return UICollectionViewCell() }
+            
+            cell.activityIndicator.startAnimating()
+            
+            updateInfo()
+            
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -103,6 +138,8 @@ extension CategoryController: UICollectionViewDataSource, UICollectionViewDelega
                         at indexPath: IndexPath) -> UICollectionReusableView {
         guard kind == UICollectionView.elementKindSectionHeader,
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderReusableView.reuseIdentifier, for: indexPath) as? HeaderReusableView else { return UICollectionReusableView() }
+        
+        headerView.delegate = self
         
         return headerView
     }
@@ -114,5 +151,22 @@ extension CategoryController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: Self.cellSize.width, height: 60)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch indexPath.row {
+        case 0..<shops.count:
+            return CGSize(width: Self.cellSize.width, height: Self.cellSize.height)
+        default:
+            return CGSize(width: UIScreen.main.bounds.width - 2 * Constants.sideOffset, height: 40)
+        }
+    }
+}
+
+extension CategoryController: HeaderReusableViewDelegate {
+    
+    func mapButtonTapped() {
+        let controller = MapController(category: category)
+        navigationController?.pushViewController(controller, animated: true)
     }
 }

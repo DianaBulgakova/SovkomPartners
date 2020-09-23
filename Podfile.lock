@@ -1,28 +1,32 @@
 PODS:
-  - SwiftClasses (1.0.0)
+  - SwiftClasses (1.0.0):
+    - TTTAttributedLabel
   - SwiftLint (0.40.1)
+  - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
-  - SwiftClasses (from `https://github.com/ubank/SwiftClasses.git`)
+  - SwiftClasses (from `https://github.com/akhakimzyanov/SwiftClasses.git`)
   - SwiftLint
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - SwiftLint
+    - TTTAttributedLabel
 
 EXTERNAL SOURCES:
   SwiftClasses:
-    :git: https://github.com/ubank/SwiftClasses.git
+    :git: https://github.com/akhakimzyanov/SwiftClasses.git
 
 CHECKOUT OPTIONS:
   SwiftClasses:
-    :commit: 440fc5cdad615998ee6550306e3e81a31d6882d3
-    :git: https://github.com/ubank/SwiftClasses.git
+    :commit: eb30a2d0a3f03cf315f7838098b350818edaf9d5
+    :git: https://github.com/akhakimzyanov/SwiftClasses.git
 
 SPEC CHECKSUMS:
-  SwiftClasses: a24d4dfa451ea3b0c8c9ace5e268e11470ea7eff
+  SwiftClasses: b8d6eeceb853e35ce6d81f89957f21a0a2869885
   SwiftLint: bbfed21bf4451dcbd0f5cdbee44a18e06cf91b12
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 0a713df683e8d11dfaa7c7a30e22fb5711529a75
+PODFILE CHECKSUM: 9318ff4a346f0aa0dabc1368be2fbee8ec535190
 
 COCOAPODS: 1.9.3

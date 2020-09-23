@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol PromosCellDelegate: class {
+    
+    func selectedPromo(_ promo: Promo)
+}
+
 class PromosCell: UITableViewCell {
+    
+    weak var delegate: PromosCellDelegate?
     
     static let cellReuseIdentifier = "PromosCell"
     
@@ -80,5 +87,11 @@ extension PromosCell: UICollectionViewDataSource, UICollectionViewDelegate {
         cell.setup(promo: promo)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let promo = promos[indexPath.row]
+        
+        delegate?.selectedPromo(promo)
     }
 }

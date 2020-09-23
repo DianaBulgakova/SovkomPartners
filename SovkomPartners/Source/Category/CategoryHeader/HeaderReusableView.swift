@@ -8,11 +8,19 @@
 
 import UIKit
 
+protocol HeaderReusableViewDelegate: class {
+    
+    func mapButtonTapped()
+}
+
 class HeaderReusableView: UICollectionReusableView {
+    
+    weak var delegate: HeaderReusableViewDelegate?
     
     static let reuseIdentifier = "HeaderReusableView"
     
     @IBAction
     func mapButton() {
+        delegate?.mapButtonTapped()
     }
 }

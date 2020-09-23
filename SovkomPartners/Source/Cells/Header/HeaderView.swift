@@ -8,7 +8,14 @@
 
 import UIKit
 
-class HeaderView: UITableViewHeaderFooterView {
+protocol HeaderViewDelegate: class {
+    
+    func buttonTapped(_ header: HeaderView)
+}
+
+final class HeaderView: UITableViewHeaderFooterView {
+    
+    weak var delegate: HeaderViewDelegate?
     
     static let reuseIdentifier = "HeaderView"
     
@@ -16,6 +23,7 @@ class HeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var button: UIButton!
     
     @IBAction
-    func buttonPressed() {
+    private func buttonPressed() {
+        delegate?.buttonTapped(self)
     }
 }

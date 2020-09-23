@@ -1,5 +1,5 @@
 //
-//  CategoryPartnerCell.swift
+//  PartnerCell.swift
 //  SovkomPartners
 //
 //  Created by Диана Булгакова on 08.09.2020.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class CategoryPartnerCell: UICollectionViewCell {
+class PartnerCell: UICollectionViewCell {
     
-    static let cellReuseIdentifier = "CategoryPartnerCell"
+    static let cellReuseIdentifier = "PartnerCell"
     
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -33,6 +33,12 @@ class CategoryPartnerCell: UICollectionViewCell {
         
         hashtagLabel.layer.cornerRadius = 8
         hashtagLabel.isHidden = true
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        iconView.image = nil
     }
     
     func setup(shop: Shop?) {
