@@ -33,6 +33,10 @@
 		842F1C0825056CF700689CCB /* BannerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842F1C0625056CF700689CCB /* BannerCell.xib */; };
 		842F1C0A2505700C00689CCB /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F1C092505700C00689CCB /* Banner.swift */; };
 		842F1C0C2505715400689CCB /* BannersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F1C0B2505715400689CCB /* BannersCell.swift */; };
+		847AC520251CB12D001DA17A /* GoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847AC51E251CB12D001DA17A /* GoodCell.swift */; };
+		847AC521251CB12D001DA17A /* GoodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 847AC51F251CB12D001DA17A /* GoodCell.xib */; };
+		847AC52C251F45E3001DA17A /* PromoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847AC52B251F45E3001DA17A /* PromoHeader.swift */; };
+		847AC52E251F5F93001DA17A /* PromoTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847AC52D251F5F93001DA17A /* PromoTableView.swift */; };
 		84FF2F7425078EBB00A89910 /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2F7225078EBB00A89910 /* CategoryController.swift */; };
 		84FF2F7525078EBB00A89910 /* CategoryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FF2F7325078EBB00A89910 /* CategoryController.xib */; };
 		84FF2F792507A23600A89910 /* PartnerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2F772507A23600A89910 /* PartnerCell.swift */; };
@@ -50,6 +54,10 @@
 		84FF2FA8250A7FD300A89910 /* RequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2FA7250A7FD300A89910 /* RequestProvider.swift */; };
 		84FF2FB0251B806800A89910 /* IndicatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2FAE251B806800A89910 /* IndicatorCell.swift */; };
 		84FF2FB1251B806800A89910 /* IndicatorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FF2FAF251B806800A89910 /* IndicatorCell.xib */; };
+		84FF2FB3251BC59000A89910 /* PromoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2FB2251BC59000A89910 /* PromoSection.swift */; };
+		84FF2FB8251C9C8B00A89910 /* AttributedLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2FB6251C9C8B00A89910 /* AttributedLabelCell.swift */; };
+		84FF2FBE251CA05400A89910 /* GoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2FBC251CA05400A89910 /* GoodsCell.swift */; };
+		84FF2FC2251CA08F00A89910 /* ShopsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2FC0251CA08F00A89910 /* ShopsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +90,10 @@
 		842F1C0625056CF700689CCB /* BannerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerCell.xib; sourceTree = "<group>"; };
 		842F1C092505700C00689CCB /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		842F1C0B2505715400689CCB /* BannersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannersCell.swift; sourceTree = "<group>"; };
+		847AC51E251CB12D001DA17A /* GoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodCell.swift; sourceTree = "<group>"; };
+		847AC51F251CB12D001DA17A /* GoodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodCell.xib; sourceTree = "<group>"; };
+		847AC52B251F45E3001DA17A /* PromoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoHeader.swift; sourceTree = "<group>"; };
+		847AC52D251F5F93001DA17A /* PromoTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoTableView.swift; sourceTree = "<group>"; };
 		84FF2F7225078EBB00A89910 /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		84FF2F7325078EBB00A89910 /* CategoryController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryController.xib; sourceTree = "<group>"; };
 		84FF2F772507A23600A89910 /* PartnerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerCell.swift; sourceTree = "<group>"; };
@@ -99,6 +111,10 @@
 		84FF2FA7250A7FD300A89910 /* RequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProvider.swift; sourceTree = "<group>"; };
 		84FF2FAE251B806800A89910 /* IndicatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorCell.swift; sourceTree = "<group>"; };
 		84FF2FAF251B806800A89910 /* IndicatorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IndicatorCell.xib; sourceTree = "<group>"; };
+		84FF2FB2251BC59000A89910 /* PromoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoSection.swift; sourceTree = "<group>"; };
+		84FF2FB6251C9C8B00A89910 /* AttributedLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedLabelCell.swift; sourceTree = "<group>"; };
+		84FF2FBC251CA05400A89910 /* GoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCell.swift; sourceTree = "<group>"; };
+		84FF2FC0251CA08F00A89910 /* ShopsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsCell.swift; sourceTree = "<group>"; };
 		BB1AADD6FF2FE787B360B13B /* Pods_SovkomPartners.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SovkomPartners.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -168,8 +184,8 @@
 				84FF2F97250A53E000A89910 /* Search Partner */,
 				84FF2F98250A543300A89910 /* All Promos */,
 				84FF2F9D250A5AD900A89910 /* Shops On Map */,
-				84FF2F762507A17400A89910 /* Category */,
 				84FF2F922509124C00A89910 /* Banner & Promo */,
+				84FF2F762507A17400A89910 /* Category */,
 				842F1B992500F49B00689CCB /* Cells */,
 				842F1B9A2500F4C000689CCB /* Managers */,
 				842F1B9B2500F4DC00689CCB /* Models */,
@@ -260,6 +276,32 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
+		847AC522251CB186001DA17A /* AttributedLabel */ = {
+			isa = PBXGroup;
+			children = (
+				84FF2FB6251C9C8B00A89910 /* AttributedLabelCell.swift */,
+			);
+			path = AttributedLabel;
+			sourceTree = "<group>";
+		};
+		847AC523251CB199001DA17A /* Goods */ = {
+			isa = PBXGroup;
+			children = (
+				84FF2FBC251CA05400A89910 /* GoodsCell.swift */,
+				847AC51E251CB12D001DA17A /* GoodCell.swift */,
+				847AC51F251CB12D001DA17A /* GoodCell.xib */,
+			);
+			path = Goods;
+			sourceTree = "<group>";
+		};
+		847AC524251CB1AD001DA17A /* Shops */ = {
+			isa = PBXGroup;
+			children = (
+				84FF2FC0251CA08F00A89910 /* ShopsCell.swift */,
+			);
+			path = Shops;
+			sourceTree = "<group>";
+		};
 		84FF2F762507A17400A89910 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +327,12 @@
 			isa = PBXGroup;
 			children = (
 				84FF2F932509129800A89910 /* PromoController.swift */,
+				84FF2FB2251BC59000A89910 /* PromoSection.swift */,
+				847AC52B251F45E3001DA17A /* PromoHeader.swift */,
+				847AC52D251F5F93001DA17A /* PromoTableView.swift */,
+				847AC522251CB186001DA17A /* AttributedLabel */,
+				847AC523251CB199001DA17A /* Goods */,
+				847AC524251CB1AD001DA17A /* Shops */,
 			);
 			path = "Banner & Promo";
 			sourceTree = "<group>";
@@ -409,6 +457,7 @@
 				84FF2F7A2507A23600A89910 /* PartnerCell.xib in Resources */,
 				842F1B892500F30600689CCB /* Assets.xcassets in Resources */,
 				842F1C022504FB6200689CCB /* HeaderView.xib in Resources */,
+				847AC521251CB12D001DA17A /* GoodCell.xib in Resources */,
 				842F1B982500F48900689CCB /* MainController.xib in Resources */,
 				84FF2FA6250A792B00A89910 /* SearchCityController.xib in Resources */,
 				84FF2F8B2508DD9800A89910 /* HeaderReusableView.xib in Resources */,
@@ -492,12 +541,15 @@
 			files = (
 				84FF2FA5250A792B00A89910 /* SearchCityController.swift in Sources */,
 				842F1C0C2505715400689CCB /* BannersCell.swift in Sources */,
+				847AC52C251F45E3001DA17A /* PromoHeader.swift in Sources */,
 				842F1BF32504E0D000689CCB /* SearchPartnerController.swift in Sources */,
 				84FF2F8A2508DD9800A89910 /* HeaderReusableView.swift in Sources */,
 				84FF2F9B250A546700A89910 /* AllPromosController.swift in Sources */,
 				842F1BA22501135D00689CCB /* Category.swift in Sources */,
 				842F1B9F2500F9A400689CCB /* CategoryCell.swift in Sources */,
 				84FF2FB0251B806800A89910 /* IndicatorCell.swift in Sources */,
+				84FF2FB8251C9C8B00A89910 /* AttributedLabelCell.swift in Sources */,
+				847AC52E251F5F93001DA17A /* PromoTableView.swift in Sources */,
 				84FF2F7425078EBB00A89910 /* CategoryController.swift in Sources */,
 				842F1C0725056CF700689CCB /* BannerCell.swift in Sources */,
 				842F1B802500F30500689CCB /* AppDelegate.swift in Sources */,
@@ -506,12 +558,16 @@
 				8403C27B25065EE900A7A8EB /* Constants.swift in Sources */,
 				842F1BA7250127FF00689CCB /* NetworkManager.swift in Sources */,
 				842F1B972500F48900689CCB /* MainController.swift in Sources */,
+				847AC520251CB12D001DA17A /* GoodCell.swift in Sources */,
 				842F1BFE2504FA2B00689CCB /* HeaderView.swift in Sources */,
 				84FF2FA8250A7FD300A89910 /* RequestProvider.swift in Sources */,
 				842F1B822500F30500689CCB /* SceneDelegate.swift in Sources */,
 				84FF2FA0250A5B5500A89910 /* MapController.swift in Sources */,
+				84FF2FBE251CA05400A89910 /* GoodsCell.swift in Sources */,
 				842F1BAA2503A68800689CCB /* PromoCell.swift in Sources */,
 				84FF2F7E2507B56B00A89910 /* Shop.swift in Sources */,
+				84FF2FC2251CA08F00A89910 /* ShopsCell.swift in Sources */,
+				84FF2FB3251BC59000A89910 /* PromoSection.swift in Sources */,
 				84FF2F792507A23600A89910 /* PartnerCell.swift in Sources */,
 				842F1C0A2505700C00689CCB /* Banner.swift in Sources */,
 				842F1C0425052ABD00689CCB /* MainSection.swift in Sources */,

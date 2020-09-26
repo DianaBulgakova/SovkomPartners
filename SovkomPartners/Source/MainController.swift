@@ -239,7 +239,7 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
 extension MainController: PromosCellDelegate {
     
     func selectedPromo(_ promo: Promo) {
-        let controller = PromoController(promo: promo)
+        let controller = PromoController(promoId: promo.id)
         navigationController?.pushViewController(controller, animated: true)
     }
 }
@@ -247,7 +247,7 @@ extension MainController: PromosCellDelegate {
 extension MainController: BannersCellDelegate {
     
     func selectedBanner(_ banner: Banner) {
-        let controller = PromoController(banner: banner)
+        let controller = PromoController(promoId: banner.screen.id)
         navigationController?.pushViewController(controller, animated: true)
     }
 }

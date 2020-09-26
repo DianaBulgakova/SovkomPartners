@@ -92,6 +92,24 @@ final class NetworkManager {
         }
     }
     
+    func promoInfo(promoId: String, page: Int = 0, completion: @escaping ((PromoInfoRequest?) -> Void)) {
+        let request = RequestProvider.promoInfo(promoId: promoId, page: page)
+        
+        dataTask(urlRequest: request) { data in
+            if let data = data {
+                do {
+                    let promo = try self.decoder.decode(PromoInfoRequest.self, from: data)
+                    completion(promo)
+                    return
+                } catch {
+                    print(error)
+                }
+            }
+            
+            completion(nil)
+        }
+    }
+    
     private func dataTask(urlRequest: URLRequest?, completion: @escaping ((Data?) -> Void)) {
         guard let urlRequest = urlRequest else { return }
         

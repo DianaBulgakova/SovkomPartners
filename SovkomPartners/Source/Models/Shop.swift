@@ -14,6 +14,7 @@ struct ShopRequest: Codable {
 }
 
 struct Shop: Codable {
+    
     let id: String
     let brandName: String
     let tpInstallmentPeriod: String

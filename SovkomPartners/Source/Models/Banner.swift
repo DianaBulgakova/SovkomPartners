@@ -19,11 +19,22 @@ struct Banner: Codable {
     let title: String
     let titleShort: String
     let imageURL: String?
+    let screen: Screen
     
     enum CodingKeys: String, CodingKey {
         case id
         case title
         case titleShort = "title_short"
         case imageURL = "img_url_web"
+        case screen
+    }
+}
+
+struct Screen: Codable {
+    
+    let id: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id
     }
 }
