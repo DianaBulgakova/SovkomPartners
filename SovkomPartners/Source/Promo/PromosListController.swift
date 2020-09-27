@@ -1,5 +1,5 @@
 //
-//  AllPromosController.swift
+//  PromosListController.swift
 //  SovkomPartners
 //
 //  Created by Диана Булгакова on 10.09.2020.
@@ -8,11 +8,13 @@
 
 import UIKit
 
-final class AllPromosController: UIViewController {
+final class PromosListController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        view.backgroundColor = .white
+        
         title = MainSection.Kind.promos.headerTitle
     }
 }

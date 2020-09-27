@@ -19,13 +19,4 @@ struct Category: Codable {
         case title
         case iconName = "icon_name"
     }
-    
-    init?(dictionary: [String: Any]) {
-        guard let id = dictionary["id"] as? String,
-            let title = dictionary["title"] as? String else { return nil }
-        
-        self.id = id
-        self.title = title
-        self.iconName = dictionary["icon_name"] as? String
-    }
 }

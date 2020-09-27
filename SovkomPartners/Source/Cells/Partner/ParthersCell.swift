@@ -1,5 +1,5 @@
 //
-//  ShopsCell.swift
+//  ParthersCell.swift
 //  SovkomPartners
 //
 //  Created by Диана Булгакова on 24.09.2020.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ShopsCell: UITableViewCell {
+final class ParthersCell: UITableViewCell {
     
-    static let cellReuseIdentifier = "ShopsCell"
+    static let cellReuseIdentifier = "ParthersCell"
     
     var shops = [Shop]() {
         didSet {
@@ -18,11 +18,8 @@ class ShopsCell: UITableViewCell {
         }
     }
     
-    static var height: CGFloat { cellSize.height + indent }
+    static var height: CGFloat { Constants.collectionCellSize.height + indent }
     
-    private static let cellSize = CGSize(width: (UIScreen.main.bounds.width - 3 * Constants.sideOffset) / 2, height: 250)
-    
-    private static let minimumLineSpacing: CGFloat = 8
     private static let indent: CGFloat = 40
     
     private lazy var collectionView: UICollectionView = {
@@ -30,8 +27,8 @@ class ShopsCell: UITableViewCell {
         
         layout.scrollDirection = .horizontal
         
-        layout.itemSize = Self.cellSize
-        layout.minimumLineSpacing = Self.minimumLineSpacing
+        layout.itemSize = Constants.collectionCellSize
+        layout.minimumLineSpacing = Constants.collectionMinimumLineSpacing
         layout.sectionInset = UIEdgeInsets(top: 0, left: Constants.sideOffset, bottom: 0, right: Constants.sideOffset)
         
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -72,13 +69,15 @@ class ShopsCell: UITableViewCell {
     }
 }
 
-extension ShopsCell: UICollectionViewDataSource, UICollectionViewDelegate {
+extension ParthersCell: UICollectionViewDataSource, UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         return shops.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PartnerCell.cellReuseIdentifier, for: indexPath) as? PartnerCell else { return UICollectionViewCell() }
         
         let shop = shops[indexPath.row]

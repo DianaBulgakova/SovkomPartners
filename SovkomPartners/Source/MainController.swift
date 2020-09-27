@@ -52,7 +52,7 @@ final class MainController: UIViewController {
         
         refresh.tintColor = .gray
         refresh.addTarget(self, action: #selector(updateInfo), for: .valueChanged)
-    
+        
         return refresh
     }()
     
@@ -71,8 +71,8 @@ final class MainController: UIViewController {
         let view = UITableView(frame: .zero, style: .grouped)
         
         view.register(UINib(nibName: CategoryCell.cellReuseIdentifier, bundle: nil), forCellReuseIdentifier: CategoryCell.cellReuseIdentifier)
-        view.register(PromosCell.self, forCellReuseIdentifier: PromosCell.cellReuseIdentifier)
-        view.register(BannersCell.self, forCellReuseIdentifier: BannersCell.cellReuseIdentifier)
+        view.register(PromosCell.self, forCellReuseIdentifier: PromosCell.className)
+        view.register(BannersCell.self, forCellReuseIdentifier: BannersCell.className)
         view.register(UINib(nibName: HeaderView.reuseIdentifier, bundle: .main), forHeaderFooterViewReuseIdentifier: HeaderView.reuseIdentifier)
         
         view.delegate = self
@@ -80,6 +80,10 @@ final class MainController: UIViewController {
         
         view.separatorStyle = .none
         view.backgroundColor = .white
+        view.showsVerticalScrollIndicator = false
+        view.contentInset.top = 16
+        
+        view.refreshControl = refreshControl
         
         return view
     }()
@@ -87,33 +91,27 @@ final class MainController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
-        
-        navigationItem.titleView = cityButton
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(addTapped))
-        
-        setupTableView()
+        setupViews()
+        setupNavigation()
         
         view.showActivityIndicator()
         updateInfo()
+    }
+    
+    private func setupViews() {
+        view.backgroundColor = .white
+        
+        view.addSubview(tableView)
+        tableView.layout.all.equal(to: view.layout.safe)
+    }
+    
+    private func setupNavigation() {
+        navigationItem.titleView = cityButton
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchPressed))
         
         navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         navigationController?.navigationBar.barTintColor = .white
-    }
-    
-    private func setupTableView() {
-        view.addSubview(tableView)
-        tableView.layout.all.equal(to: view.layout.safe)
-       
-        tableView.showsVerticalScrollIndicator = false
-        tableView.refreshControl = refreshControl
-        
-        tableView.contentInset.top = 16
-        
-        var frame = CGRect.zero
-        frame.size.height = .leastNormalMagnitude
-        tableView.tableHeaderView = UIView(frame: frame)
     }
     
     @objc
@@ -145,7 +143,7 @@ final class MainController: UIViewController {
     }
     
     @objc
-    private func addTapped() {
+    private func searchPressed() {
         let controller = SearchPartnerController()
         navigationController?.pushViewController(controller, animated: true)
     }
@@ -174,14 +172,14 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
         
         switch section.kind {
         case .banners:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: BannersCell.cellReuseIdentifier) as? BannersCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: BannersCell.className) as? BannersCell else { return UITableViewCell() }
             
             cell.banners = banners
             cell.delegate = self
             
             return cell
         case .promos:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: PromosCell.cellReuseIdentifier) as? PromosCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: PromosCell.className) as? PromosCell else { return UITableViewCell() }
             
             cell.promos = promos
             cell.delegate = self
@@ -279,7 +277,7 @@ extension MainController: HeaderViewDelegate {
         case .banners:
             return
         case .promos:
-            let controller = AllPromosController()
+            let controller = PromosListController()
             navigationController?.pushViewController(controller, animated: true)
         case .categories:
             let controller = MapController()

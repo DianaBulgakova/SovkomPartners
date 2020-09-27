@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MapController: UIViewController {
+final class MapController: UIViewController {
     
     private var category: Category?
     
@@ -20,6 +20,8 @@ class MapController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .white
         
         title = category?.title ?? MainSection.Kind.categories.headerTitle
     }

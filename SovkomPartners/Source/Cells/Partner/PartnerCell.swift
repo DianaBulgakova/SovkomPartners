@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PartnerCell: UICollectionViewCell {
+final class PartnerCell: UICollectionViewCell {
     
     static let cellReuseIdentifier = "PartnerCell"
     
@@ -28,11 +28,7 @@ class PartnerCell: UICollectionViewCell {
         layer.shadowOpacity = 0.13
         layer.masksToBounds = false
         
-        iconView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-        iconView.layer.cornerRadius = 10
-        
         hashtagLabel.layer.cornerRadius = 8
-        hashtagLabel.isHidden = true
     }
     
     override func prepareForReuse() {
@@ -41,26 +37,19 @@ class PartnerCell: UICollectionViewCell {
         iconView.image = nil
     }
     
-    func setup(shop: Shop?) {
-        iconView.load(url: shop?.iconURL, contentMode: .scaleAspectFit)
-        nameLabel.text = shop?.brandName
+    func setup(shop: Shop) {
+        iconView.load(url: shop.iconURL, contentMode: .scaleAspectFit)
+        nameLabel.text = shop.brandName
         
-        if let period = shop?.tpInstallmentPeriod {
-            shortNameLabel.text = "до \(period) мес."
-        } else {
-            shortNameLabel.text = nil
-        }
+        shortNameLabel.text = "до \(shop.tpInstallmentPeriod) мес."
         
-        if let partIn = shop?.partIn,
-            partIn {
-            partinImage.image = #imageLiteral(resourceName: "general_percent")
-        } else {
-            partinImage.image = nil
-        }
+        partinImage.isHidden = !shop.partIn
         
-        if let hashtag = shop?.hashtags.first {
+        if let hashtag = shop.hashtags.first {
             hashtagLabel.text = hashtag
             hashtagLabel.isHidden = false
+        } else {
+            hashtagLabel.isHidden = true
         }
     }
 }

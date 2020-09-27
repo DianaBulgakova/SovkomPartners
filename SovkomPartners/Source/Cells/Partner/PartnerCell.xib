@@ -45,7 +45,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k1L-0j-8Yz">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="general_percent" translatesAutoresizingMaskIntoConstraints="NO" id="k1L-0j-8Yz">
                         <rect key="frame" x="8" y="10" width="25" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="gOG-S7-zzM"/>
@@ -85,4 +85,7 @@
             <point key="canvasLocation" x="105.79710144927537" y="134.26339285714286"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="general_percent" width="24" height="24"/>
+    </resources>
 </document>

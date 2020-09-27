@@ -44,7 +44,7 @@
 		84FF2F8A2508DD9800A89910 /* HeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2F882508DD9800A89910 /* HeaderReusableView.swift */; };
 		84FF2F8B2508DD9800A89910 /* HeaderReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FF2F892508DD9800A89910 /* HeaderReusableView.xib */; };
 		84FF2F952509129800A89910 /* PromoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2F932509129800A89910 /* PromoController.swift */; };
-		84FF2F9B250A546700A89910 /* AllPromosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2F99250A546700A89910 /* AllPromosController.swift */; };
+		84FF2F9B250A546700A89910 /* PromosListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2F99250A546700A89910 /* PromosListController.swift */; };
 		84FF2FA0250A5B5500A89910 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2F9E250A5B5500A89910 /* MapController.swift */; };
 		84FF2FA5250A792B00A89910 /* SearchCityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2FA3250A792B00A89910 /* SearchCityController.swift */; };
 		84FF2FA8250A7FD300A89910 /* RequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2FA7250A7FD300A89910 /* RequestProvider.swift */; };
@@ -53,7 +53,7 @@
 		84FF2FB3251BC59000A89910 /* PromoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2FB2251BC59000A89910 /* PromoSection.swift */; };
 		84FF2FB8251C9C8B00A89910 /* AttributedLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2FB6251C9C8B00A89910 /* AttributedLabelCell.swift */; };
 		84FF2FBE251CA05400A89910 /* GoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2FBC251CA05400A89910 /* GoodsCell.swift */; };
-		84FF2FC2251CA08F00A89910 /* ShopsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2FC0251CA08F00A89910 /* ShopsCell.swift */; };
+		84FF2FC2251CA08F00A89910 /* ParthersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2FC0251CA08F00A89910 /* ParthersCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,7 +97,7 @@
 		84FF2F882508DD9800A89910 /* HeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderReusableView.swift; sourceTree = "<group>"; };
 		84FF2F892508DD9800A89910 /* HeaderReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderReusableView.xib; sourceTree = "<group>"; };
 		84FF2F932509129800A89910 /* PromoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoController.swift; sourceTree = "<group>"; };
-		84FF2F99250A546700A89910 /* AllPromosController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPromosController.swift; sourceTree = "<group>"; };
+		84FF2F99250A546700A89910 /* PromosListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromosListController.swift; sourceTree = "<group>"; };
 		84FF2F9E250A5B5500A89910 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		84FF2FA3250A792B00A89910 /* SearchCityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityController.swift; sourceTree = "<group>"; };
 		84FF2FA7250A7FD300A89910 /* RequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProvider.swift; sourceTree = "<group>"; };
@@ -106,7 +106,7 @@
 		84FF2FB2251BC59000A89910 /* PromoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoSection.swift; sourceTree = "<group>"; };
 		84FF2FB6251C9C8B00A89910 /* AttributedLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedLabelCell.swift; sourceTree = "<group>"; };
 		84FF2FBC251CA05400A89910 /* GoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCell.swift; sourceTree = "<group>"; };
-		84FF2FC0251CA08F00A89910 /* ShopsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsCell.swift; sourceTree = "<group>"; };
+		84FF2FC0251CA08F00A89910 /* ParthersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParthersCell.swift; sourceTree = "<group>"; };
 		BB1AADD6FF2FE787B360B13B /* Pods_SovkomPartners.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SovkomPartners.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -170,16 +170,17 @@
 		842F1B942500F38000689CCB /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				8403C27A25065EE900A7A8EB /* Constants.swift */,
 				842F1B952500F48900689CCB /* MainController.swift */,
-				84FF2F98250A543300A89910 /* All Promos */,
-				84FF2F922509124C00A89910 /* Promo */,
 				84FF2F762507A17400A89910 /* Category */,
 				842F1B992500F49B00689CCB /* Cells */,
+				84FF2FA2250A783300A89910 /* City */,
 				842F1B9A2500F4C000689CCB /* Managers */,
+				84FF2F9D250A5AD900A89910 /* Map */,
 				842F1B9B2500F4DC00689CCB /* Models */,
-				84FF2FA2250A783300A89910 /* Search City */,
-				84FF2F97250A53E000A89910 /* Search Partner */,
-				84FF2F9D250A5AD900A89910 /* Shops On Map */,
+				84FF2F922509124C00A89910 /* Promo */,
+				84FF2F97250A53E000A89910 /* Search */,
+				847AC5372520D09A001DA17A /* Views */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -187,14 +188,13 @@
 		842F1B992500F49B00689CCB /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				847AC53125207A54001DA17A /* Partner */,
-				842F1C0F250572FC00689CCB /* Banner */,
-				842F1C0E250572D600689CCB /* Promo */,
-				842F1C0D250572B400689CCB /* Category */,
-				842F1C102505730C00689CCB /* Header */,
 				847AC522251CB186001DA17A /* AttributedLabel */,
-				847AC524251CB1AD001DA17A /* Shops */,
+				842F1C0F250572FC00689CCB /* Banner */,
+				842F1C0D250572B400689CCB /* Category */,
+				847AC523251CB199001DA17A /* Good */,
 				84FF2FA9251B7A4900A89910 /* Indicator */,
+				847AC53125207A54001DA17A /* Partner */,
+				842F1C0E250572D600689CCB /* Promo */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -212,11 +212,10 @@
 			isa = PBXGroup;
 			children = (
 				842F1C092505700C00689CCB /* Banner.swift */,
-				842F1BAC2503A71900689CCB /* Promo.swift */,
 				842F1BA12501135D00689CCB /* Category.swift */,
-				84FF2F7D2507B56B00A89910 /* Shop.swift */,
 				842F1C0325052ABD00689CCB /* MainSection.swift */,
-				8403C27A25065EE900A7A8EB /* Constants.swift */,
+				842F1BAC2503A71900689CCB /* Promo.swift */,
+				84FF2F7D2507B56B00A89910 /* Shop.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -224,10 +223,10 @@
 		842F1B9C2500F51500689CCB /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				842F1B882500F30600689CCB /* Assets.xcassets */,
 				842F1B8D2500F30600689CCB /* Info.plist */,
-				842F1B8A2500F30600689CCB /* LaunchScreen.storyboard */,
+				842F1B882500F30600689CCB /* Assets.xcassets */,
 				8403C27C2507860400A7A8EB /* swiftlint.yml */,
+				842F1B8A2500F30600689CCB /* LaunchScreen.storyboard */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -244,9 +243,9 @@
 		842F1C0E250572D600689CCB /* Promo */ = {
 			isa = PBXGroup;
 			children = (
-				842F1BE92503F1BD00689CCB /* PromosCell.swift */,
 				842F1BA82503A68800689CCB /* PromoCell.swift */,
 				842F1BA92503A68800689CCB /* PromoCell.xib */,
+				842F1BE92503F1BD00689CCB /* PromosCell.swift */,
 			);
 			path = Promo;
 			sourceTree = "<group>";
@@ -254,20 +253,11 @@
 		842F1C0F250572FC00689CCB /* Banner */ = {
 			isa = PBXGroup;
 			children = (
-				842F1C0B2505715400689CCB /* BannersCell.swift */,
 				842F1C0525056CF700689CCB /* BannerCell.swift */,
 				842F1C0625056CF700689CCB /* BannerCell.xib */,
+				842F1C0B2505715400689CCB /* BannersCell.swift */,
 			);
 			path = Banner;
-			sourceTree = "<group>";
-		};
-		842F1C102505730C00689CCB /* Header */ = {
-			isa = PBXGroup;
-			children = (
-				842F1BFD2504FA2B00689CCB /* HeaderView.swift */,
-				842F1C012504FB6200689CCB /* HeaderView.xib */,
-			);
-			path = Header;
 			sourceTree = "<group>";
 		};
 		847AC522251CB186001DA17A /* AttributedLabel */ = {
@@ -278,22 +268,14 @@
 			path = AttributedLabel;
 			sourceTree = "<group>";
 		};
-		847AC523251CB199001DA17A /* Goods */ = {
+		847AC523251CB199001DA17A /* Good */ = {
 			isa = PBXGroup;
 			children = (
-				84FF2FBC251CA05400A89910 /* GoodsCell.swift */,
 				847AC51E251CB12D001DA17A /* GoodCell.swift */,
 				847AC51F251CB12D001DA17A /* GoodCell.xib */,
+				84FF2FBC251CA05400A89910 /* GoodsCell.swift */,
 			);
-			path = Goods;
-			sourceTree = "<group>";
-		};
-		847AC524251CB1AD001DA17A /* Shops */ = {
-			isa = PBXGroup;
-			children = (
-				84FF2FC0251CA08F00A89910 /* ShopsCell.swift */,
-			);
-			path = Shops;
+			path = Good;
 			sourceTree = "<group>";
 		};
 		847AC52F251FA9CA001DA17A /* Views */ = {
@@ -316,6 +298,7 @@
 		847AC53125207A54001DA17A /* Partner */ = {
 			isa = PBXGroup;
 			children = (
+				84FF2FC0251CA08F00A89910 /* ParthersCell.swift */,
 				84FF2F772507A23600A89910 /* PartnerCell.swift */,
 				84FF2F782507A23600A89910 /* PartnerCell.xib */,
 			);
@@ -331,66 +314,59 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		84FF2F762507A17400A89910 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				84FF2F7225078EBB00A89910 /* CategoryController.swift */,
-				84FF2F872508DCC300A89910 /* CategoryHeader */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
-		84FF2F872508DCC300A89910 /* CategoryHeader */ = {
+		847AC5372520D09A001DA17A /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				84FF2F882508DD9800A89910 /* HeaderReusableView.swift */,
 				84FF2F892508DD9800A89910 /* HeaderReusableView.xib */,
+				842F1BFD2504FA2B00689CCB /* HeaderView.swift */,
+				842F1C012504FB6200689CCB /* HeaderView.xib */,
 			);
-			path = CategoryHeader;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		84FF2F762507A17400A89910 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				84FF2F7225078EBB00A89910 /* CategoryController.swift */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		84FF2F922509124C00A89910 /* Promo */ = {
 			isa = PBXGroup;
 			children = (
 				84FF2F932509129800A89910 /* PromoController.swift */,
+				84FF2F99250A546700A89910 /* PromosListController.swift */,
 				847AC53425208136001DA17A /* Controllers */,
-				847AC523251CB199001DA17A /* Goods */,
 				847AC530251FA9D7001DA17A /* Models */,
 				847AC52F251FA9CA001DA17A /* Views */,
 			);
 			path = Promo;
 			sourceTree = "<group>";
 		};
-		84FF2F97250A53E000A89910 /* Search Partner */ = {
+		84FF2F97250A53E000A89910 /* Search */ = {
 			isa = PBXGroup;
 			children = (
 				842F1BF12504E0D000689CCB /* SearchPartnerController.swift */,
 			);
-			path = "Search Partner";
+			path = Search;
 			sourceTree = "<group>";
 		};
-		84FF2F98250A543300A89910 /* All Promos */ = {
-			isa = PBXGroup;
-			children = (
-				84FF2F99250A546700A89910 /* AllPromosController.swift */,
-			);
-			path = "All Promos";
-			sourceTree = "<group>";
-		};
-		84FF2F9D250A5AD900A89910 /* Shops On Map */ = {
+		84FF2F9D250A5AD900A89910 /* Map */ = {
 			isa = PBXGroup;
 			children = (
 				84FF2F9E250A5B5500A89910 /* MapController.swift */,
 			);
-			path = "Shops On Map";
+			path = Map;
 			sourceTree = "<group>";
 		};
-		84FF2FA2250A783300A89910 /* Search City */ = {
+		84FF2FA2250A783300A89910 /* City */ = {
 			isa = PBXGroup;
 			children = (
 				84FF2FA3250A792B00A89910 /* SearchCityController.swift */,
 			);
-			path = "Search City";
+			path = City;
 			sourceTree = "<group>";
 		};
 		84FF2FA9251B7A4900A89910 /* Indicator */ = {
@@ -559,7 +535,7 @@
 				847AC52C251F45E3001DA17A /* PromoHeader.swift in Sources */,
 				842F1BF32504E0D000689CCB /* SearchPartnerController.swift in Sources */,
 				84FF2F8A2508DD9800A89910 /* HeaderReusableView.swift in Sources */,
-				84FF2F9B250A546700A89910 /* AllPromosController.swift in Sources */,
+				84FF2F9B250A546700A89910 /* PromosListController.swift in Sources */,
 				842F1BA22501135D00689CCB /* Category.swift in Sources */,
 				842F1B9F2500F9A400689CCB /* CategoryCell.swift in Sources */,
 				84FF2FB0251B806800A89910 /* IndicatorCell.swift in Sources */,
@@ -582,7 +558,7 @@
 				84FF2FBE251CA05400A89910 /* GoodsCell.swift in Sources */,
 				842F1BAA2503A68800689CCB /* PromoCell.swift in Sources */,
 				84FF2F7E2507B56B00A89910 /* Shop.swift in Sources */,
-				84FF2FC2251CA08F00A89910 /* ShopsCell.swift in Sources */,
+				84FF2FC2251CA08F00A89910 /* ParthersCell.swift in Sources */,
 				84FF2FB3251BC59000A89910 /* PromoSection.swift in Sources */,
 				84FF2F792507A23600A89910 /* PartnerCell.swift in Sources */,
 				842F1C0A2505700C00689CCB /* Banner.swift in Sources */,

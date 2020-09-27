@@ -33,8 +33,4 @@ struct Banner: Codable {
 struct Screen: Codable {
     
     let id: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-    }
 }

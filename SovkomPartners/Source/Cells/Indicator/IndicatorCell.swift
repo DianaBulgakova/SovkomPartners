@@ -9,7 +9,7 @@
 import UIKit
 import SwiftClasses
 
-class IndicatorCell: UICollectionViewCell {
+final class IndicatorCell: UICollectionViewCell {
     
     static let cellReuseIdentifier = "IndicatorCell"
     

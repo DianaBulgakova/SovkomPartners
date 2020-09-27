@@ -9,13 +9,11 @@
 import UIKit
 import SwiftClasses
 
-class AttributedLabelCell: UITableViewCell {
+final class AttributedLabelCell: UITableViewCell {
     
     static let shared = AttributedLabelCell()
     
-    static let cellReuseIdentifier = "AttributedLabelCell"
-    
-    private lazy var attributedLabel: AttributedLabel = {
+    private(set) lazy var label: AttributedLabel = {
         let label = AttributedLabel()
         
         return label
@@ -36,21 +34,17 @@ class AttributedLabelCell: UITableViewCell {
     private func commonInit() {
         selectionStyle = .none
         
-        contentView.addSubview(attributedLabel)
-        attributedLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.sideOffset).isActive = true
-        attributedLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.sideOffset).isActive = true
-        attributedLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        attributedLabel.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    func setup(promo: Promo?) {
-        attributedLabel.setTitle(promo?.promoDescription)
+        contentView.addSubview(label)
+        label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.sideOffset).isActive = true
+        label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.sideOffset).isActive = true
+        label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        label.translatesAutoresizingMaskIntoConstraints = false
     }
     
     var contentHeight: CGFloat {
         setNeedsLayout()
         layoutIfNeeded()
         
-        return attributedLabel.contentHeight + 10
+        return label.contentHeight + 10
     }
 }

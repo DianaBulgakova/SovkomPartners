@@ -14,8 +14,8 @@ final class PromoController: UIViewController {
     private var promoId: String?
     
     private var promo: Promo?
-    private var shops: [Shop]?
-    private var goods: [Good]?
+    private var shops = [Shop]()
+    private var goods = [Good]()
     
     private var sections: [PromoSection] {
         guard let promo = promo else { return [] }
@@ -62,16 +62,18 @@ final class PromoController: UIViewController {
     private lazy var tableView: PromoTableView = {
         let view = PromoTableView(frame: .zero, style: .grouped)
         
+        view.register(AttributedLabelCell.self, forCellReuseIdentifier: AttributedLabelCell.className)
+        view.register(GoodsCell.self, forCellReuseIdentifier: GoodsCell.cellReuseIdentifier)
+        view.register(ParthersCell.self, forCellReuseIdentifier: ParthersCell.cellReuseIdentifier)
+        view.register(UINib(nibName: HeaderView.reuseIdentifier, bundle: nil), forHeaderFooterViewReuseIdentifier: HeaderView.reuseIdentifier)
+        
         view.delegate = self
         view.dataSource = self
         
-        view.register(AttributedLabelCell.self, forCellReuseIdentifier: AttributedLabelCell.cellReuseIdentifier)
-        view.register(GoodsCell.self, forCellReuseIdentifier: GoodsCell.cellReuseIdentifier)
-        view.register(ShopsCell.self, forCellReuseIdentifier: ShopsCell.cellReuseIdentifier)
-        view.register(UINib(nibName: HeaderView.reuseIdentifier, bundle: nil), forHeaderFooterViewReuseIdentifier: HeaderView.reuseIdentifier)
-        
         view.separatorStyle = .none
         view.backgroundColor = .white
+        
+        view.tableHeaderView = headerView
         
         return view
     }()
@@ -85,12 +87,9 @@ final class PromoController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
-        
         setupViews()
         
         view.showActivityIndicator()
-        
         updateInfo()
     }
     
@@ -113,8 +112,8 @@ final class PromoController: UIViewController {
             guard let self = self else { return }
             
             self.promo = promoInfoRequest?.promo
-            self.shops = promoInfoRequest?.shops.items
-            self.goods = promoInfoRequest?.promo.goods
+            self.shops = promoInfoRequest?.shops.items ?? []
+            self.goods = promoInfoRequest?.promo.goods ?? []
             
             self.headerView.setup(promo: self.promo)
             self.tableView.reloadData()
@@ -123,14 +122,14 @@ final class PromoController: UIViewController {
     }
     
     private func setupViews() {
+        view.backgroundColor = .white
+        
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 10).isActive = true
-        
-        tableView.tableHeaderView = headerView
+        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         view.addSubview(cancelButton)
     }
@@ -159,13 +158,13 @@ extension PromoController: UITableViewDelegate, UITableViewDataSource {
         switch section.kind {
         case .attributedLabel:
             AttributedLabelCell.shared.frame.size.width = tableView.frame.width
-            AttributedLabelCell.shared.setup(promo: promo)
+            AttributedLabelCell.shared.label.setAttributedTitle(promo?.promoDescription.attributedHTML)
             
             return AttributedLabelCell.shared.contentHeight
         case .goods:
             return GoodsCell.height
         case .shops:
-            return ShopsCell.height
+            return ParthersCell.height
         }
     }
     
@@ -208,21 +207,21 @@ extension PromoController: UITableViewDelegate, UITableViewDataSource {
         
         switch section.kind {
         case .attributedLabel:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: AttributedLabelCell.cellReuseIdentifier) as? AttributedLabelCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: AttributedLabelCell.className) as? AttributedLabelCell else { return UITableViewCell() }
             
-            cell.setup(promo: promo)
+            cell.label.setAttributedTitle(promo?.promoDescription.attributedHTML)
             
             return cell
         case .goods:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: GoodsCell.cellReuseIdentifier) as? GoodsCell else { return UITableViewCell() }
             
-            cell.goods = goods ?? []
+            cell.goods = goods
             
             return cell
         case .shops:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ShopsCell.cellReuseIdentifier) as? ShopsCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ParthersCell.cellReuseIdentifier) as? ParthersCell else { return UITableViewCell() }
             
-            cell.shops = shops ?? []
+            cell.shops = shops
             
             return cell
         }
@@ -238,7 +237,7 @@ extension PromoController: HeaderViewDelegate {
         case .attributedLabel:
             return
         case .goods:
-            let controller = GoodsController(promoId: promoId)
+            let controller = GoodsController(goods: goods)
             navigationController?.pushViewController(controller, animated: true)
         case .shops:
             let controller = ShopsController(promoId: promoId)

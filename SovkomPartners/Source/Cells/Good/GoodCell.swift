@@ -8,8 +8,8 @@
 
 import UIKit
 
-class GoodCell: UICollectionViewCell {
-
+final class GoodCell: UICollectionViewCell {
+    
     static let cellReuseIdentifier = "GoodCell"
     
     @IBOutlet weak var iconView: UIImageView!

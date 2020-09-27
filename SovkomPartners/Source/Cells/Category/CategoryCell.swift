@@ -9,7 +9,7 @@
 import UIKit
 import SwiftClasses
 
-class CategoryCell: TableViewCell {
+final class CategoryCell: TableViewCell {
     
     static let cellReuseIdentifier = "CategoryCell"
     

@@ -24,6 +24,12 @@ final class PromoCell: UICollectionViewCell {
         contentView.clipsToBounds = true
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        iconView.image = nil
+    }
+    
     func setup(promo: Promo?) {
         iconView.load(url: promo?.imageURL, contentMode: .scaleAspectFill)
         nameLabel.text = promo?.title

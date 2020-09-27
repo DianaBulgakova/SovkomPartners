@@ -8,11 +8,13 @@
 
 import UIKit
 
-class SearchCityController: UIViewController {
-
+final class SearchCityController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        view.backgroundColor = .white
+        
         title = "Ваш город"
     }
 }

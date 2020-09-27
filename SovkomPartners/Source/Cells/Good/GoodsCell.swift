@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GoodsCell: UITableViewCell {
+final class GoodsCell: UITableViewCell {
     
     static let cellReuseIdentifier = "GoodsCell"
     
@@ -18,11 +18,8 @@ class GoodsCell: UITableViewCell {
         }
     }
     
-    static var height: CGFloat { cellSize.height + indent }
+    static var height: CGFloat { Constants.collectionCellSize.height + indent }
     
-    private static let cellSize = CGSize(width: (UIScreen.main.bounds.width - 3 * Constants.sideOffset) / 2, height: 250)
-    
-    private static let minimumLineSpacing: CGFloat = 8
     private static let indent: CGFloat = 40
     
     private lazy var collectionView: UICollectionView = {
@@ -30,20 +27,20 @@ class GoodsCell: UITableViewCell {
         
         layout.scrollDirection = .horizontal
         
-        layout.itemSize = Self.cellSize
-        layout.minimumLineSpacing = Self.minimumLineSpacing
+        layout.itemSize = Constants.collectionCellSize
+        layout.minimumLineSpacing = Constants.collectionMinimumLineSpacing
         layout.sectionInset = UIEdgeInsets(top: 0, left: Constants.sideOffset, bottom: 0, right: Constants.sideOffset)
         
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
         view.register(UINib(nibName: GoodCell.cellReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: GoodCell.cellReuseIdentifier)
         
+        view.delegate = self
+        view.dataSource = self
+        
         view.backgroundColor = .white
         view.showsHorizontalScrollIndicator = false
         view.clipsToBounds = false
-        
-        view.delegate = self
-        view.dataSource = self
         
         return view
     }()
@@ -74,11 +71,13 @@ class GoodsCell: UITableViewCell {
 
 extension GoodsCell: UICollectionViewDataSource, UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         return goods.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GoodCell.cellReuseIdentifier, for: indexPath) as? GoodCell else { return UICollectionViewCell() }
         
         let good = goods[indexPath.row]

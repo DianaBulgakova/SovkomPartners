@@ -13,7 +13,7 @@ protocol HeaderReusableViewDelegate: class {
     func mapButtonTapped()
 }
 
-class HeaderReusableView: UICollectionReusableView {
+final class HeaderReusableView: UICollectionReusableView {
     
     weak var delegate: HeaderReusableViewDelegate?
     

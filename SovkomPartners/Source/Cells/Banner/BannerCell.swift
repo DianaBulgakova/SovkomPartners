@@ -9,7 +9,7 @@
 import UIKit
 import SwiftClasses
 
-class BannerCell: UICollectionViewCell {
+final class BannerCell: UICollectionViewCell {
     
     static let cellReuseIdentifier = "BannerCell"
     
@@ -29,6 +29,12 @@ class BannerCell: UICollectionViewCell {
         
         iconView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         iconView.layer.cornerRadius = 10
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        iconView.image = nil
     }
     
     func setup(banner: Banner?) {

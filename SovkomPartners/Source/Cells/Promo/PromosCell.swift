@@ -13,11 +13,9 @@ protocol PromosCellDelegate: class {
     func selectedPromo(_ promo: Promo)
 }
 
-class PromosCell: UITableViewCell {
+final class PromosCell: UITableViewCell {
     
     weak var delegate: PromosCellDelegate?
-    
-    static let cellReuseIdentifier = "PromosCell"
     
     static var height: CGFloat { size.height }
     
@@ -75,11 +73,13 @@ class PromosCell: UITableViewCell {
 
 extension PromosCell: UICollectionViewDataSource, UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         return promos.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PromoCell.cellReuseIdentifier, for: indexPath) as? PromoCell else { return UICollectionViewCell() }
         
         let promo = promos[indexPath.row] 
@@ -89,7 +89,8 @@ extension PromosCell: UICollectionViewDataSource, UICollectionViewDelegate {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
         let promo = promos[indexPath.row]
         
         delegate?.selectedPromo(promo)

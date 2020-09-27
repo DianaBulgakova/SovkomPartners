@@ -8,11 +8,13 @@
 
 import UIKit
 
-class SearchPartnerController: UIViewController {
-
+final class SearchPartnerController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        view.backgroundColor = .white
+        
         title = "Поиск магазинов"
     }
 }

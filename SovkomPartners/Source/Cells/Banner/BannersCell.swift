@@ -13,17 +13,14 @@ protocol BannersCellDelegate: class {
     func selectedBanner(_ banner: Banner)
 }
 
-class BannersCell: UITableViewCell {
+final class BannersCell: UITableViewCell {
     
     weak var delegate: BannersCellDelegate?
-    
-    static let cellReuseIdentifier = "BannersCell"
     
     static var height: CGFloat { cellSize.height + indent }
     
     private static let cellSize = CGSize(width: UIScreen.main.bounds.width - 2 * Constants.sideOffset, height: 250)
     
-    private static let minimumLineSpacing: CGFloat = 8
     private static let indent: CGFloat = 40
     
     var banners = [Banner]() {
@@ -45,7 +42,7 @@ class BannersCell: UITableViewCell {
         layout.scrollDirection = .horizontal
         
         layout.itemSize = Self.cellSize
-        layout.minimumLineSpacing = Self.minimumLineSpacing
+        layout.minimumLineSpacing = Constants.collectionMinimumLineSpacing
         layout.sectionInset = UIEdgeInsets(top: 0, left: Constants.sideOffset, bottom: 0, right: Constants.sideOffset)
         
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -96,7 +93,6 @@ class BannersCell: UITableViewCell {
         addSubview(pageControl)
         pageControl.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         pageControl.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        pageControl.widthAnchor.constraint(equalToConstant: 70).isActive = true
         pageControl.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
         pageControl.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -118,11 +114,13 @@ class BannersCell: UITableViewCell {
 
 extension BannersCell: UICollectionViewDataSource, UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         return banners.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BannerCell.cellReuseIdentifier, for: indexPath) as? BannerCell else { return UICollectionViewCell() }
         
         let banner = banners[indexPath.row]
@@ -132,7 +130,8 @@ extension BannersCell: UICollectionViewDataSource, UICollectionViewDelegate {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
         let banner = banners[indexPath.row]
         
         delegate?.selectedBanner(banner)
@@ -154,7 +153,7 @@ extension BannersCell: UIScrollViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView,
                                    withVelocity velocity: CGPoint,
                                    targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let pageWidth = Self.cellSize.width + Self.minimumLineSpacing
+        let pageWidth = Self.cellSize.width + Constants.collectionMinimumLineSpacing
         
         var newPage: CGFloat
         if velocity.x == 0 {
