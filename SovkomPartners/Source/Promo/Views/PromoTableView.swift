@@ -30,6 +30,7 @@ class PromoTableView: UITableView {
                 bringSubviewToFront(headerView)
                 
                 updateHeaderMargins()
+                
                 let headerSize = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
                 contentInset.top = headerSize.height - safeAreaInsets.top
                 contentOffset.y = -headerSize.height
@@ -37,7 +38,7 @@ class PromoTableView: UITableView {
         }
     }
     
-    private func updateHeaderMargins () {
+    private func updateHeaderMargins() {
         elasticHeaderView?.directionalLayoutMargins = NSDirectionalEdgeInsets(
             top: safeAreaInsets.top,
             leading: safeAreaInsets.left,
@@ -56,7 +57,7 @@ class PromoTableView: UITableView {
         layoutHeaderView()
     }
     
-    private func layoutHeaderView () {
+    private func layoutHeaderView() {
         updateHeaderMargins()
         
         if let headerView = elasticHeaderView {

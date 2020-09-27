@@ -10,7 +10,7 @@ import UIKit
 import SwiftClasses
 
 final class PromoCell: UICollectionViewCell {
-
+    
     static let cellReuseIdentifier = "PromoCell"
     
     @IBOutlet weak var nameLabel: UILabel!

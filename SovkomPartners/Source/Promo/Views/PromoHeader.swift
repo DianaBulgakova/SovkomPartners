@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PromoHeader: UIView {
+final class PromoHeader: UIView {
     
     private lazy var imageTop: UIImageView = {
         let image = UIImageView()
@@ -26,10 +26,10 @@ class PromoHeader: UIView {
     }()
     
     private lazy var title: UILabel = {
-        let label = UILabel(frame: .zero)
+        let label = UILabel()
         
         label.textColor = .white
-        label.font = UIFont.boldSystemFont(ofSize: 28.0)
+        label.font = .boldSystemFont(ofSize: 28)
         label.numberOfLines = 0
         
         return label
@@ -47,10 +47,11 @@ class PromoHeader: UIView {
         commonInit()
     }
     
-    func commonInit() {
+    private func commonInit() {
         addSubview(imageTop)
         addSubview(darkImage)
         addSubview(title)
+        
         imageTop.translatesAutoresizingMaskIntoConstraints = false
         darkImage.translatesAutoresizingMaskIntoConstraints = false
         title.translatesAutoresizingMaskIntoConstraints = false

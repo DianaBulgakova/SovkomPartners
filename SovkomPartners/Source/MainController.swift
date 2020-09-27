@@ -17,13 +17,13 @@ final class MainController: UIViewController {
         }
     }
     
-    private var categories = [Category]() {
+    private var promos = [Promo]() {
         didSet {
             tableView.reloadData()
         }
     }
     
-    private var promos = [Promo]() {
+    private var categories = [Category]() {
         didSet {
             tableView.reloadData()
         }
@@ -67,10 +67,27 @@ final class MainController: UIViewController {
         return button
     }()
     
-    @IBOutlet weak var tableView: UITableView!
+    private lazy var tableView: UITableView = {
+        let view = UITableView(frame: .zero, style: .grouped)
+        
+        view.register(UINib(nibName: CategoryCell.cellReuseIdentifier, bundle: nil), forCellReuseIdentifier: CategoryCell.cellReuseIdentifier)
+        view.register(PromosCell.self, forCellReuseIdentifier: PromosCell.cellReuseIdentifier)
+        view.register(BannersCell.self, forCellReuseIdentifier: BannersCell.cellReuseIdentifier)
+        view.register(UINib(nibName: HeaderView.reuseIdentifier, bundle: .main), forHeaderFooterViewReuseIdentifier: HeaderView.reuseIdentifier)
+        
+        view.delegate = self
+        view.dataSource = self
+        
+        view.separatorStyle = .none
+        view.backgroundColor = .white
+        
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .white
         
         navigationItem.titleView = cityButton
         
@@ -86,13 +103,8 @@ final class MainController: UIViewController {
     }
     
     private func setupTableView() {
-        tableView.register(UINib(nibName: CategoryCell.cellReuseIdentifier, bundle: nil), forCellReuseIdentifier: CategoryCell.cellReuseIdentifier)
-        tableView.register(PromosCell.self, forCellReuseIdentifier: PromosCell.cellReuseIdentifier)
-        tableView.register(BannersCell.self, forCellReuseIdentifier: BannersCell.cellReuseIdentifier)
-        tableView.register(UINib(nibName: HeaderView.reuseIdentifier, bundle: .main), forHeaderFooterViewReuseIdentifier: HeaderView.reuseIdentifier)
-        
-        tableView.delegate = self
-        tableView.dataSource = self
+        view.addSubview(tableView)
+        tableView.layout.all.equal(to: view.layout.safe)
        
         tableView.showsVerticalScrollIndicator = false
         tableView.refreshControl = refreshControl
@@ -220,11 +232,17 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
         return .leastNormalMagnitude
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView,
+                   viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   viewForHeaderInSection section: Int) -> UIView? {
         let section = sections[section]
         
         guard let sectionTitle = section.kind.headerTitle,
-            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderView.reuseIdentifier) as? HeaderView else { return UIView() }
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderView.reuseIdentifier) as? HeaderView else { return nil }
         
         header.title.text = sectionTitle
         header.button.title = section.kind.headerButtonTitle

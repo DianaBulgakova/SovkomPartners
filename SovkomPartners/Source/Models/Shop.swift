@@ -21,7 +21,7 @@ struct Shop: Codable {
     let iconURL: String
     let partIn: Bool
     let hashtags: [String]
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case brandName = "brand_name"

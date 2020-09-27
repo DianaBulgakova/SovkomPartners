@@ -133,10 +133,10 @@ extension BannersCell: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-           let banner = banners[indexPath.row]
-           
-           delegate?.selectedBanner(banner)
-       }
+        let banner = banners[indexPath.row]
+        
+        delegate?.selectedBanner(banner)
+    }
 }
 
 extension BannersCell: UIScrollViewDelegate {

@@ -1,5 +1,5 @@
 //
-//  GoodsCell.swift
+//  ShopsCell.swift
 //  SovkomPartners
 //
 //  Created by Диана Булгакова on 24.09.2020.
@@ -8,15 +8,16 @@
 
 import UIKit
 
-class GoodsCell: UITableViewCell {
+class ShopsCell: UITableViewCell {
     
-    static let cellReuseIdentifier = "GoodsCell"
+    static let cellReuseIdentifier = "ShopsCell"
     
-    var goods = [Good]() {
+    var shops = [Shop]() {
         didSet {
             collectionView.reloadData()
         }
     }
+    
     static var height: CGFloat { cellSize.height + indent }
     
     private static let cellSize = CGSize(width: (UIScreen.main.bounds.width - 3 * Constants.sideOffset) / 2, height: 250)
@@ -35,7 +36,7 @@ class GoodsCell: UITableViewCell {
         
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
-        view.register(UINib(nibName: GoodCell.cellReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: GoodCell.cellReuseIdentifier)
+        view.register(UINib(nibName: PartnerCell.cellReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: PartnerCell.cellReuseIdentifier)
         
         view.backgroundColor = .white
         view.showsHorizontalScrollIndicator = false
@@ -66,23 +67,23 @@ class GoodsCell: UITableViewCell {
         collectionView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Self.indent).isActive = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
     }
 }
 
-extension GoodsCell: UICollectionViewDataSource, UICollectionViewDelegate {
+extension ShopsCell: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return goods.count
+        return shops.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GoodCell.cellReuseIdentifier, for: indexPath) as? GoodCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PartnerCell.cellReuseIdentifier, for: indexPath) as? PartnerCell else { return UICollectionViewCell() }
         
-        let good = goods[indexPath.row]
+        let shop = shops[indexPath.row]
         
-        cell.setup(good: good)
+        cell.setup(shop: shop)
         
         return cell
     }

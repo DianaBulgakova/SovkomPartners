@@ -12,7 +12,7 @@ import SwiftClasses
 class BannerCell: UICollectionViewCell {
     
     static let cellReuseIdentifier = "BannerCell"
-
+    
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var shortNameLabel: UILabel!

@@ -33,7 +33,7 @@ class CategoryController: UIViewController {
         
         layout.minimumLineSpacing = Self.minimumLineSpacing
         layout.minimumInteritemSpacing = Self.minimumInteritemSpacing
-        layout.sectionInset = UIEdgeInsets(top: 0, left: Constants.sideOffset, bottom: 0, right: Constants.sideOffset)
+        layout.sectionInset = UIEdgeInsets(top: Constants.sideOffset, left: Constants.sideOffset, bottom: Constants.sideOffset, right: Constants.sideOffset)
         
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
@@ -81,7 +81,7 @@ class CategoryController: UIViewController {
         collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         collectionView.refreshControl = refreshControl

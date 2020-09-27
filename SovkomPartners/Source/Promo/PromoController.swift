@@ -11,102 +11,11 @@ import SwiftClasses
 
 final class PromoController: UIViewController {
     
-    private var promoId: String? {
-           didSet {
-               tableView.reloadData()
-           }
-       }
+    private var promoId: String?
     
-    private var promo: Promo? {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-    
-    private var shops: [Shop]? {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-    
-    private var goods: [Good]? {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-    
-    private lazy var headerView: PromoHeader = {
-        let header = PromoHeader(frame: .zero)
-        
-        return header
-    }()
-    
-    private lazy var cancelButton: UIButton = {
-        let button = UIButton(type: .custom)
-        
-        button.title = "x"
-        button.frame = CGRect(x: UIScreen.main.bounds.width - 50, y: 50, width: 30, height: 30)
-        button.layer.cornerRadius = 0.5 * button.bounds.size.width
-        button.clipsToBounds = true
-        button.backgroundColor = .white
-        button.titleColor = .black
-        button.addTarget(self, action: #selector(cancelTapped), for: .touchUpInside)
-        
-        return button
-    }()
-    
-    @objc
-    private func cancelTapped() {
-        
-        navigationController?.popViewController(animated: true)
-    }
-        
-    convenience init(promoId: String) {
-        self.init()
-        
-        self.promoId = promoId
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupViews()
-        updateInfo()
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        updateHeaderViewHeight(for: tableView.tableHeaderView)
-    }
-
-    func updateHeaderViewHeight(for header: UIView?) {
-        guard let header = header else { return }
-        header.frame.size.height = header.systemLayoutSizeFitting(CGSize(width: view.bounds.width - 32.0, height: 0)).height
-    }
-    
-    private func updateInfo() {
-        guard let promoId = promoId else { return }
-        
-        NetworkManager.shared.promoInfo(promoId: promoId) { [weak self] promoInfoRequest in
-            guard let self = self else { return }
-            
-            self.promo = promoInfoRequest?.promo
-            self.shops = promoInfoRequest?.shops.items
-            self.goods = promoInfoRequest?.promo.goods
-        }
-    }
+    private var promo: Promo?
+    private var shops: [Shop]?
+    private var goods: [Good]?
     
     private var sections: [PromoSection] {
         guard let promo = promo else { return [] }
@@ -128,9 +37,30 @@ final class PromoController: UIViewController {
         return sections
     }
     
+    private lazy var headerView: PromoHeader = {
+        let header = PromoHeader()
+        
+        header.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        
+        return header
+    }()
+    
+    private lazy var cancelButton: UIButton = {
+        let button = UIButton(type: .custom)
+        
+        button.title = "x"
+        button.frame = CGRect(x: UIScreen.main.bounds.width - 50, y: 50, width: 30, height: 30)
+        button.layer.cornerRadius = 0.5 * button.bounds.size.width
+        button.clipsToBounds = true
+        button.backgroundColor = .white
+        button.titleColor = .black
+        button.addTarget(self, action: #selector(cancelTapped), for: .touchUpInside)
+        
+        return button
+    }()
+    
     private lazy var tableView: PromoTableView = {
-        var frame = CGRect.zero
-        let view = PromoTableView(frame: frame, style: .grouped)
+        let view = PromoTableView(frame: .zero, style: .grouped)
         
         view.delegate = self
         view.dataSource = self
@@ -138,7 +68,7 @@ final class PromoController: UIViewController {
         view.register(AttributedLabelCell.self, forCellReuseIdentifier: AttributedLabelCell.cellReuseIdentifier)
         view.register(GoodsCell.self, forCellReuseIdentifier: GoodsCell.cellReuseIdentifier)
         view.register(ShopsCell.self, forCellReuseIdentifier: ShopsCell.cellReuseIdentifier)
-        view.register(UINib(nibName: HeaderView.reuseIdentifier, bundle: .main), forHeaderFooterViewReuseIdentifier: HeaderView.reuseIdentifier)
+        view.register(UINib(nibName: HeaderView.reuseIdentifier, bundle: nil), forHeaderFooterViewReuseIdentifier: HeaderView.reuseIdentifier)
         
         view.separatorStyle = .none
         view.backgroundColor = .white
@@ -146,19 +76,68 @@ final class PromoController: UIViewController {
         return view
     }()
     
+    convenience init(promoId: String) {
+        self.init()
+        
+        self.promoId = promoId
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .white
+        
+        setupViews()
+        
+        view.showActivityIndicator()
+        
+        updateInfo()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    private func updateInfo() {
+        guard let promoId = promoId else { return }
+        
+        NetworkManager.shared.promoInfo(promoId: promoId) { [weak self] promoInfoRequest in
+            guard let self = self else { return }
+            
+            self.promo = promoInfoRequest?.promo
+            self.shops = promoInfoRequest?.shops.items
+            self.goods = promoInfoRequest?.promo.goods
+            
+            self.headerView.setup(promo: self.promo)
+            self.tableView.reloadData()
+            self.view.hideActivityIndicator()
+        }
+    }
+    
     private func setupViews() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 10).isActive = true
         
         tableView.tableHeaderView = headerView
-
-        tableView.tableHeaderView?.heightAnchor.constraint(equalToConstant: 400).isActive = true
         
         view.addSubview(cancelButton)
+    }
+    
+    @objc
+    private func cancelTapped() {
+        navigationController?.popViewController(animated: true)
     }
 }
 
@@ -202,15 +181,17 @@ extension PromoController: UITableViewDelegate, UITableViewDataSource {
         return .leastNormalMagnitude
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView,
+                   viewForFooterInSection section: Int) -> UIView? {
         return nil
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView,
+                   viewForHeaderInSection section: Int) -> UIView? {
         let section = sections[section]
         
         guard let sectionTitle = section.title,
-            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderView.reuseIdentifier) as? HeaderView else { return UIView() }
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderView.reuseIdentifier) as? HeaderView else { return nil }
         
         header.title.text = sectionTitle
         header.button.title = section.kind.headerButtonTitle
@@ -230,7 +211,6 @@ extension PromoController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AttributedLabelCell.cellReuseIdentifier) as? AttributedLabelCell else { return UITableViewCell() }
             
             cell.setup(promo: promo)
-            headerView.setup(promo: promo)
             
             return cell
         case .goods:
@@ -258,10 +238,10 @@ extension PromoController: HeaderViewDelegate {
         case .attributedLabel:
             return
         case .goods:
-            let controller = AllPromosController()
+            let controller = GoodsController(promoId: promoId)
             navigationController?.pushViewController(controller, animated: true)
         case .shops:
-            let controller = MapController()
+            let controller = ShopsController(promoId: promoId)
             navigationController?.pushViewController(controller, animated: true)
         }
     }
