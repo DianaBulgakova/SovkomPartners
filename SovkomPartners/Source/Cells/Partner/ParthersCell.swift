@@ -60,11 +60,11 @@ final class ParthersCell: UITableViewCell {
     private func commonInit() {
         selectionStyle = .none
         
-        addSubview(collectionView)
-        collectionView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Self.indent).isActive = true
+        contentView.addSubview(collectionView)
+        collectionView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Self.indent).isActive = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
     }
 }

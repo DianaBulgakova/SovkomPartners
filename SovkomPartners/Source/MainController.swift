@@ -198,10 +198,19 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
-        let category = categories[indexPath.row]
+        let section = sections[indexPath.section]
         
-        let controller = CategoryController(category: category)
-        navigationController?.pushViewController(controller, animated: true)
+        switch section.kind {
+        case .banners:
+            return
+        case .promos:
+            return
+        case .categories:
+            let category = categories[indexPath.row]
+            
+            let controller = CategoryController(category: category)
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView,
