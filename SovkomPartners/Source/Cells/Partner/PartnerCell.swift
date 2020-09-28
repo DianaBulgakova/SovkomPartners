@@ -17,6 +17,7 @@ final class PartnerCell: UICollectionViewCell {
     @IBOutlet weak var shortNameLabel: UILabel!
     @IBOutlet weak var partinImage: UIImageView!
     @IBOutlet weak var hashtagLabel: UILabel!
+    @IBOutlet weak var hashtagLabel2: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,6 +30,7 @@ final class PartnerCell: UICollectionViewCell {
         layer.masksToBounds = false
         
         hashtagLabel.layer.cornerRadius = 8
+        hashtagLabel2.layer.cornerRadius = 8
     }
     
     override func prepareForReuse() {
@@ -50,6 +52,15 @@ final class PartnerCell: UICollectionViewCell {
             hashtagLabel.isHidden = false
         } else {
             hashtagLabel.isHidden = true
+        }
+        
+        let isIndexValid = shop.hashtags.indices.contains(1)
+        
+        if isIndexValid {
+            hashtagLabel2.text = shop.hashtags[1]
+            hashtagLabel2.isHidden = false
+        } else {
+            hashtagLabel2.isHidden = true
         }
     }
 }
