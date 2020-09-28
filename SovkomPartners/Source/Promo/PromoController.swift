@@ -49,8 +49,8 @@ final class PromoController: UIViewController {
         let button = UIButton(type: .custom)
         
         button.title = "x"
-        button.frame = CGRect(x: UIScreen.main.bounds.width - 50, y: 50, width: 30, height: 30)
-        button.layer.cornerRadius = 0.5 * button.bounds.size.width
+        button.titleLabel?.textAlignment = .center
+        button.layer.cornerRadius = 15
         button.clipsToBounds = true
         button.backgroundColor = .white
         button.titleColor = .black
@@ -132,6 +132,11 @@ final class PromoController: UIViewController {
         tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         view.addSubview(cancelButton)
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        cancelButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
+        cancelButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        cancelButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        cancelButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
     @objc
