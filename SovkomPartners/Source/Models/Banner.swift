@@ -33,4 +33,11 @@ struct Banner: Codable {
 struct Screen: Codable {
     
     let id: String
+    let url: String
+    let typeBanner: TypeBanner
+    
+    enum TypeBanner: String, Codable {
+        case clickableURL = "CLICKABLE_URL"
+        case typeBannerDEFAULT = "DEFAULT"
+    }
 }

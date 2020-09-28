@@ -201,9 +201,8 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
         let section = sections[indexPath.section]
         
         switch section.kind {
-        case .banners:
-            return
-        case .promos:
+        case .banners,
+             .promos:
             return
         case .categories:
             let category = categories[indexPath.row]
@@ -249,7 +248,7 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
         let section = sections[section]
         
         guard let sectionTitle = section.kind.headerTitle,
-            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderView.reuseIdentifier) as? HeaderView else { return nil }
+              let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderView.reuseIdentifier) as? HeaderView else { return nil }
         
         header.title.text = sectionTitle
         header.button.title = section.kind.headerButtonTitle
@@ -272,8 +271,15 @@ extension MainController: PromosCellDelegate {
 extension MainController: BannersCellDelegate {
     
     func selectedBanner(_ banner: Banner) {
-        let controller = PromoController(promoId: banner.screen.id)
-        navigationController?.pushViewController(controller, animated: true)
+        switch banner.screen.typeBanner {
+        case .clickableURL:
+            guard let url = URL(string: banner.screen.url) else { return }
+            
+            UIApplication.shared.open(url)
+        default:
+            let controller = PromoController(promoId: banner.screen.id)
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }
 
