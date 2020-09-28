@@ -31,7 +31,6 @@ final class GoodsController: UIViewController {
         view.dataSource = self
         
         view.backgroundColor = .white
-        view.clipsToBounds = false
         
         return view
     }()
@@ -54,11 +53,7 @@ final class GoodsController: UIViewController {
         view.backgroundColor = .white
         
         view.addSubview(collectionView)
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.layout.all.equal(to: view.layout.safe)
     }
 }
 

@@ -37,7 +37,6 @@ final class ParthersCell: UITableViewCell {
         
         view.backgroundColor = .white
         view.showsHorizontalScrollIndicator = false
-        view.clipsToBounds = false
         
         view.delegate = self
         view.dataSource = self
@@ -61,11 +60,7 @@ final class ParthersCell: UITableViewCell {
         selectionStyle = .none
         
         contentView.addSubview(collectionView)
-        collectionView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Self.indent).isActive = true
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.layout.all.equal(to: contentView)
     }
 }
 

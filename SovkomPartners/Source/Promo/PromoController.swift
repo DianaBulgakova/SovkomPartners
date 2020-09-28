@@ -125,18 +125,13 @@ final class PromoController: UIViewController {
         view.backgroundColor = .white
         
         view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        tableView.layout.all.except(.bottom).equal(to: view)
+        tableView.layout.bottom.equal(to: view.layout.safe)
         
         view.addSubview(cancelButton)
-        cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        cancelButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
-        cancelButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        cancelButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        cancelButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        cancelButton.layout.top.equal(to: view, offset: 50)
+        cancelButton.layout.right.equal(to: view, offset: -20)
+        cancelButton.layout.size.equal(to: CGSize(side: 30))
     }
     
     @objc

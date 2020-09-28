@@ -49,26 +49,15 @@ final class PromoHeader: UIView {
     
     private func commonInit() {
         addSubview(imageTop)
+        imageTop.layout.all.equal(to: self)
+        
         addSubview(darkImage)
+        darkImage.layout.all.equal(to: self)
+        
         addSubview(title)
-        
-        imageTop.translatesAutoresizingMaskIntoConstraints = false
-        darkImage.translatesAutoresizingMaskIntoConstraints = false
-        title.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            imageTop.leadingAnchor.constraint(equalTo: leadingAnchor),
-            imageTop.trailingAnchor.constraint(equalTo: trailingAnchor),
-            imageTop.topAnchor.constraint(equalTo: topAnchor),
-            imageTop.bottomAnchor.constraint(equalTo: bottomAnchor),
-            darkImage.leadingAnchor.constraint(equalTo: leadingAnchor),
-            darkImage.trailingAnchor.constraint(equalTo: trailingAnchor),
-            darkImage.topAnchor.constraint(equalTo: topAnchor),
-            darkImage.bottomAnchor.constraint(equalTo: bottomAnchor),
-            title.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constants.sideOffset),
-            title.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constants.sideOffset),
-            title.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2 * Constants.sideOffset),
-        ])
+        title.layout.left.equal(to: self, offset: Constants.sideOffset)
+        title.layout.right.equal(to: self, offset: -Constants.sideOffset)
+        title.layout.bottom.equal(to: self, offset: -2 * Constants.sideOffset)
     }
     
     func setup(promo: Promo?) {

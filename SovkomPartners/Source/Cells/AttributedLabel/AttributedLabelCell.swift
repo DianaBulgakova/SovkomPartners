@@ -35,10 +35,9 @@ final class AttributedLabelCell: UITableViewCell {
         selectionStyle = .none
         
         contentView.addSubview(label)
-        label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.sideOffset).isActive = true
-        label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.sideOffset).isActive = true
-        label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.layout.left.equal(to: contentView, offset: Constants.sideOffset)
+        label.layout.right.equal(to: contentView, offset: -Constants.sideOffset)
+        label.layout.centerX.equal(to: contentView)
     }
     
     var contentHeight: CGFloat {

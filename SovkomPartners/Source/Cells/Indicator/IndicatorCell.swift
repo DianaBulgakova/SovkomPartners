@@ -31,10 +31,9 @@ final class IndicatorCell: UICollectionViewCell {
     
     func commonInit() {
         contentView.addSubview(activityIndicator)
-        activityIndicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        activityIndicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        activityIndicator.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        activityIndicator.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.layout.centerY.equal(to: contentView)
+        activityIndicator.layout.centerX.equal(to: contentView)
+        activityIndicator.layout.height.equal(to: 30)
+        activityIndicator.layout.width.equal(to: 30)
     }
 }

@@ -40,7 +40,6 @@ final class GoodsCell: UITableViewCell {
         
         view.backgroundColor = .white
         view.showsHorizontalScrollIndicator = false
-        view.clipsToBounds = false
         
         return view
     }()
@@ -61,11 +60,7 @@ final class GoodsCell: UITableViewCell {
         selectionStyle = .none
         
         contentView.addSubview(collectionView)
-        collectionView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.layout.all.equal(to: contentView)
     }
 }
 
