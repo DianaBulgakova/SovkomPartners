@@ -286,7 +286,7 @@ extension MainController: HeaderViewDelegate {
         case .banners:
             return
         case .promos:
-            let controller = PromosListController()
+            let controller = PromosListController(promos: promos)
             navigationController?.pushViewController(controller, animated: true)
         case .categories:
             let controller = MapController()
