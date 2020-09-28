@@ -92,7 +92,7 @@ final class NetworkManager {
         }
     }
     
-    func promoInfo(promoId: String, page: Int = 0, completion: @escaping ((PromoInfoRequest?) -> Void)) {
+    func promoInfo(promoId: String, page: Int, completion: @escaping ((PromoInfoRequest?) -> Void)) {
         let request = RequestProvider.promoInfo(promoId: promoId, page: page)
         
         dataTask(urlRequest: request) { data in

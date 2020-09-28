@@ -10,6 +10,9 @@ import UIKit
 
 final class ShopsController: UIViewController {
     
+    private var canLoadMore = false
+    private var page = 0
+    
     private var promoId: String?
     private var shops = [Shop]()
     
@@ -26,6 +29,7 @@ final class ShopsController: UIViewController {
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
         view.register(UINib(nibName: PartnerCell.cellReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: PartnerCell.cellReuseIdentifier)
+        view.register(IndicatorCell.self, forCellWithReuseIdentifier: IndicatorCell.className)
         
         view.delegate = self
         view.dataSource = self
@@ -79,11 +83,13 @@ final class ShopsController: UIViewController {
     private func updateInfo() {
         guard let promoId = promoId else { return }
         
-        NetworkManager.shared.promoInfo(promoId: promoId) { [weak self] promoInfoRequest in
+        NetworkManager.shared.promoInfo(promoId: promoId, page: page) { [weak self] promoInfoRequest in
             guard let self = self else { return }
             
-            self.shops = promoInfoRequest?.shops.items ?? []
-            
+            let newShops = promoInfoRequest?.shops.items ?? []
+            self.shops += newShops
+            self.canLoadMore = Constants.paginationLimit == newShops.count
+            self.page += 1
             self.collectionView.reloadData()
             self.view.hideActivityIndicator()
             self.refreshControl.endRefreshing()
@@ -95,15 +101,40 @@ extension ShopsController: UICollectionViewDataSource, UICollectionViewDelegate 
     
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return shops.count
+        return shops.count + (canLoadMore ? 1 : 0)
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PartnerCell.cellReuseIdentifier, for: indexPath) as? PartnerCell else { return UICollectionViewCell() }
-        
-        cell.setup(shop: shops[indexPath.row])
-        
-        return cell
+        switch indexPath.row {
+        case 0..<shops.count:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PartnerCell.cellReuseIdentifier, for: indexPath) as? PartnerCell else { return UICollectionViewCell() }
+            
+            cell.setup(shop: shops[indexPath.row])
+            
+            return cell
+        default:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IndicatorCell.className, for: indexPath) as? IndicatorCell else { return UICollectionViewCell() }
+            
+            cell.activityIndicator.startAnimating()
+            
+            updateInfo()
+            
+            return cell
+        }
+    }
+}
+
+extension ShopsController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch indexPath.row {
+        case 0..<shops.count:
+            return Constants.collectionCellSize
+        default:
+            return CGSize(width: UIScreen.main.bounds.width - 2 * Constants.sideOffset, height: 40)
+        }
     }
 }

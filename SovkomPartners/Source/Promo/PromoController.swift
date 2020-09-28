@@ -108,7 +108,7 @@ final class PromoController: UIViewController {
     private func updateInfo() {
         guard let promoId = promoId else { return }
         
-        NetworkManager.shared.promoInfo(promoId: promoId) { [weak self] promoInfoRequest in
+        NetworkManager.shared.promoInfo(promoId: promoId, page: 0) { [weak self] promoInfoRequest in
             guard let self = self else { return }
             
             self.promo = promoInfoRequest?.promo
