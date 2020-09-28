@@ -11,7 +11,30 @@ import SwiftClasses
 
 final class IndicatorCell: UICollectionViewCell {
     
-    static let cellReuseIdentifier = "IndicatorCell"
+    private(set) lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        
+        return indicator
+    }()
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        commonInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        commonInit()
+    }
+    
+    func commonInit() {
+        contentView.addSubview(activityIndicator)
+        activityIndicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
+        activityIndicator.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        activityIndicator.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+    }
 }

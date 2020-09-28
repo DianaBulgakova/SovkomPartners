@@ -34,7 +34,7 @@ final class CategoryController: UIViewController {
         
         view.register(UINib(nibName: PartnerCell.cellReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: PartnerCell.cellReuseIdentifier)
         view.register(UINib(nibName: HeaderReusableView.reuseIdentifier, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HeaderReusableView.reuseIdentifier)
-        view.register(UINib(nibName: IndicatorCell.cellReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: IndicatorCell.cellReuseIdentifier)
+        view.register(IndicatorCell.self, forCellWithReuseIdentifier: IndicatorCell.className)
         
         view.delegate = self
         view.dataSource = self
@@ -118,7 +118,7 @@ extension CategoryController: UICollectionViewDataSource, UICollectionViewDelega
             
             return cell
         default:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IndicatorCell.cellReuseIdentifier, for: indexPath) as? IndicatorCell else { return UICollectionViewCell() }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IndicatorCell.className, for: indexPath) as? IndicatorCell else { return UICollectionViewCell() }
             
             cell.activityIndicator.startAnimating()
             
@@ -132,7 +132,7 @@ extension CategoryController: UICollectionViewDataSource, UICollectionViewDelega
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
         guard kind == UICollectionView.elementKindSectionHeader,
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderReusableView.reuseIdentifier, for: indexPath) as? HeaderReusableView else { return UICollectionReusableView() }
+              let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderReusableView.reuseIdentifier, for: indexPath) as? HeaderReusableView else { return UICollectionReusableView() }
         
         headerView.delegate = self
         
@@ -155,7 +155,7 @@ extension CategoryController: UICollectionViewDelegateFlowLayout {
         case 0..<shops.count:
             return Constants.collectionCellSize
         default:
-            return CGSize(width: collectionView.frame.width, height: 40)
+            return CGSize(width: UIScreen.main.bounds.width - 2 * Constants.sideOffset, height: 40)
         }
     }
 }

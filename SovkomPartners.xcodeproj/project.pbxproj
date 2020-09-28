@@ -49,7 +49,6 @@
 		84FF2FA5250A792B00A89910 /* SearchCityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2FA3250A792B00A89910 /* SearchCityController.swift */; };
 		84FF2FA8250A7FD300A89910 /* RequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2FA7250A7FD300A89910 /* RequestProvider.swift */; };
 		84FF2FB0251B806800A89910 /* IndicatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2FAE251B806800A89910 /* IndicatorCell.swift */; };
-		84FF2FB1251B806800A89910 /* IndicatorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FF2FAF251B806800A89910 /* IndicatorCell.xib */; };
 		84FF2FB3251BC59000A89910 /* PromoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2FB2251BC59000A89910 /* PromoSection.swift */; };
 		84FF2FB8251C9C8B00A89910 /* AttributedLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2FB6251C9C8B00A89910 /* AttributedLabelCell.swift */; };
 		84FF2FBE251CA05400A89910 /* GoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF2FBC251CA05400A89910 /* GoodsCell.swift */; };
@@ -102,7 +101,6 @@
 		84FF2FA3250A792B00A89910 /* SearchCityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityController.swift; sourceTree = "<group>"; };
 		84FF2FA7250A7FD300A89910 /* RequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProvider.swift; sourceTree = "<group>"; };
 		84FF2FAE251B806800A89910 /* IndicatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorCell.swift; sourceTree = "<group>"; };
-		84FF2FAF251B806800A89910 /* IndicatorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IndicatorCell.xib; sourceTree = "<group>"; };
 		84FF2FB2251BC59000A89910 /* PromoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoSection.swift; sourceTree = "<group>"; };
 		84FF2FB6251C9C8B00A89910 /* AttributedLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedLabelCell.swift; sourceTree = "<group>"; };
 		84FF2FBC251CA05400A89910 /* GoodsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCell.swift; sourceTree = "<group>"; };
@@ -373,7 +371,6 @@
 			isa = PBXGroup;
 			children = (
 				84FF2FAE251B806800A89910 /* IndicatorCell.swift */,
-				84FF2FAF251B806800A89910 /* IndicatorCell.xib */,
 			);
 			path = Indicator;
 			sourceTree = "<group>";
@@ -458,7 +455,6 @@
 				842F1C0825056CF700689CCB /* BannerCell.xib in Resources */,
 				8403C27D2507860400A7A8EB /* swiftlint.yml in Resources */,
 				842F1BAB2503A68800689CCB /* PromoCell.xib in Resources */,
-				84FF2FB1251B806800A89910 /* IndicatorCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
