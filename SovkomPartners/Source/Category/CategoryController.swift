@@ -87,35 +87,30 @@ final class CategoryController: UIViewController {
     
     @objc
     private func updateInfo() {
-        guard let categoryId = category?.id else { return }
+        guard let category = category else { return }
         
-        let group = DispatchGroup()
-        
-        group.enter()
-        NetworkManager.shared.shops(categoryId: categoryId, page: page) { [weak self] shops in
-            guard let self = self else { return }
-            
-            let newShops = shops ?? []
-            self.shops += newShops
-            self.canLoadMore = Constants.paginationLimit == newShops.count
-            self.page += 1
-            group.leave()
-        }
-        
-        group.enter()
-        NetworkManager.shared.malls(page: page) { [weak self] malls in
-            guard let self = self else { return }
-            
-            let newMalls = malls ?? []
-            self.malls += newMalls
-            self.canLoadMore = Constants.paginationLimit == newMalls.count
-            self.page += 1
-            group.leave()
-        }
-        
-        group.notify(queue: .main) { [weak self] in
-            self?.view.hideActivityIndicator()
-            self?.refreshControl.endRefreshing()
+        if category.isMall {
+            NetworkManager.shared.malls(page: page) { [weak self] malls in
+                guard let self = self else { return }
+                
+                let newMalls = malls ?? []
+                self.malls += newMalls
+                self.canLoadMore = Constants.paginationLimit == newMalls.count
+                self.page += 1
+                self.view.hideActivityIndicator()
+                self.refreshControl.endRefreshing()
+            }
+        } else {
+            NetworkManager.shared.shops(categoryId: category.id, page: page) { [weak self] shops in
+                guard let self = self else { return }
+                
+                let newShops = shops ?? []
+                self.shops += newShops
+                self.canLoadMore = Constants.paginationLimit == newShops.count
+                self.page += 1
+                self.view.hideActivityIndicator()
+                self.refreshControl.endRefreshing()
+            }
         }
     }
 }
