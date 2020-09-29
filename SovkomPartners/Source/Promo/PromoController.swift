@@ -190,7 +190,7 @@ extension PromoController: UITableViewDelegate, UITableViewDataSource {
         let section = sections[section]
         
         guard let sectionTitle = section.title,
-            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderView.reuseIdentifier) as? HeaderView else { return nil }
+              let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderView.reuseIdentifier) as? HeaderView else { return nil }
         
         header.title.text = sectionTitle
         header.button.title = section.kind.headerButtonTitle

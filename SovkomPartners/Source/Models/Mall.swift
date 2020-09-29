@@ -17,7 +17,7 @@ struct Mall: Codable {
     let title: String
     let imgURL: String
     let shopsCount: Int
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case title

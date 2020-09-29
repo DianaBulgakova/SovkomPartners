@@ -86,7 +86,7 @@ final class BannersCell: UITableViewCell {
         contentView.addSubview(collectionView)
         collectionView.layout.all.except(.bottom).equal(to: contentView)
         collectionView.layout.bottom.equal(to: contentView, offset: -Self.indent)
-
+        
         contentView.addSubview(pageControl)
         pageControl.layout.bottom.equal(to: contentView)
         pageControl.layout.height.equal(to: 30)
