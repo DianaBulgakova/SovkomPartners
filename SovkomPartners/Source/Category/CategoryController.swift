@@ -21,6 +21,12 @@ final class CategoryController: UIViewController {
         }
     }
     
+    private var malls = [Mall]() {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
@@ -83,6 +89,9 @@ final class CategoryController: UIViewController {
     private func updateInfo() {
         guard let categoryId = category?.id else { return }
         
+        let group = DispatchGroup()
+        
+        group.enter()
         NetworkManager.shared.shops(categoryId: categoryId, page: page) { [weak self] shops in
             guard let self = self else { return }
             
@@ -90,8 +99,23 @@ final class CategoryController: UIViewController {
             self.shops += newShops
             self.canLoadMore = Constants.paginationLimit == newShops.count
             self.page += 1
-            self.view.hideActivityIndicator()
-            self.refreshControl.endRefreshing()
+            group.leave()
+        }
+        
+        group.enter()
+        NetworkManager.shared.malls(page: page) { [weak self] malls in
+            guard let self = self else { return }
+            
+            let newMalls = malls ?? []
+            self.malls += newMalls
+            self.canLoadMore = Constants.paginationLimit == newMalls.count
+            self.page += 1
+            group.leave()
+        }
+        
+        group.notify(queue: .main) { [weak self] in
+            self?.view.hideActivityIndicator()
+            self?.refreshControl.endRefreshing()
         }
     }
 }
@@ -100,40 +124,75 @@ extension CategoryController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return shops.count + (canLoadMore ? 1 : 0)
+        guard let category = category else { return 0 }
+        
+        if category.isMall {
+            return malls.count + (canLoadMore ? 1 : 0)
+        } else {
+            return shops.count + (canLoadMore ? 1 : 0)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch indexPath.row {
-        case 0..<shops.count:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PartnerCell.cellReuseIdentifier, for: indexPath) as? PartnerCell else { return UICollectionViewCell() }
-            
-            let shop = shops[indexPath.row]
-            
-            cell.setup(shop: shop)
-            
-            return cell
-        default:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IndicatorCell.className, for: indexPath) as? IndicatorCell else { return UICollectionViewCell() }
-            
-            cell.activityIndicator.startAnimating()
-            
-            updateInfo()
-            
-            return cell
+        guard let category = category else { return UICollectionViewCell() }
+        
+        if category.isMall {
+            switch indexPath.row {
+            case 0..<malls.count:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PartnerCell.cellReuseIdentifier, for: indexPath) as? PartnerCell else { return UICollectionViewCell() }
+                
+                let mall = malls[indexPath.row]
+                
+                cell.setup(mall: mall)
+                
+                return cell
+            default:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IndicatorCell.className, for: indexPath) as? IndicatorCell else { return UICollectionViewCell() }
+                
+                cell.activityIndicator.startAnimating()
+                
+                updateInfo()
+                
+                return cell
+            }
+        } else {
+            switch indexPath.row {
+            case 0..<shops.count:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PartnerCell.cellReuseIdentifier, for: indexPath) as? PartnerCell else { return UICollectionViewCell() }
+                
+                let shop = shops[indexPath.row]
+                
+                cell.setup(shop: shop)
+                
+                return cell
+            default:
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IndicatorCell.className, for: indexPath) as? IndicatorCell else { return UICollectionViewCell() }
+                
+                cell.activityIndicator.startAnimating()
+                
+                updateInfo()
+                
+                return cell
+            }
         }
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
-        guard kind == UICollectionView.elementKindSectionHeader,
-              let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderReusableView.reuseIdentifier, for: indexPath) as? HeaderReusableView else { return UICollectionReusableView() }
+        guard let category = category else { return UICollectionReusableView() }
         
-        headerView.delegate = self
-        
-        return headerView
+        if category.isMall {
+            return UICollectionReusableView()
+        } else {
+            guard kind == UICollectionView.elementKindSectionHeader,
+                  let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderReusableView.reuseIdentifier, for: indexPath) as? HeaderReusableView else { return UICollectionReusableView() }
+            
+            headerView.delegate = self
+            
+            return headerView
+        }
     }
 }
 
@@ -142,17 +201,34 @@ extension CategoryController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 60)
+        guard let category = category else { return CGSize(side: 0) }
+        
+        if category.isMall {
+            return CGSize(side: 0)
+        } else {
+            return CGSize(width: collectionView.frame.width, height: 60)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch indexPath.row {
-        case 0..<shops.count:
-            return Constants.collectionCellSize
-        default:
-            return CGSize(width: UIScreen.main.bounds.width - 2 * Constants.sideOffset, height: 40)
+        guard let category = category else { return CGSize(side: 0) }
+        
+        if category.isMall {
+            switch indexPath.row {
+            case 0..<malls.count:
+                return Constants.collectionCellSize
+            default:
+                return CGSize(width: UIScreen.main.bounds.width - 2 * Constants.sideOffset, height: 40)
+            }
+        } else {
+            switch indexPath.row {
+            case 0..<shops.count:
+                return Constants.collectionCellSize
+            default:
+                return CGSize(width: UIScreen.main.bounds.width - 2 * Constants.sideOffset, height: 40)
+            }
         }
     }
 }

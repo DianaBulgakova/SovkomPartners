@@ -13,10 +13,12 @@ struct Category: Codable {
     let id: String
     let title: String
     let iconName: String?
+    let isMall: Bool
     
     enum CodingKeys: String, CodingKey {
         case id
         case title
         case iconName = "icon_name"
+        case isMall = "is_mall"
     }
 }
