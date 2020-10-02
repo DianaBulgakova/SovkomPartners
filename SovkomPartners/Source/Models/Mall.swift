@@ -18,6 +18,10 @@ struct Mall: Codable {
     let imgURL: String
     let shopsCount: Int
     let mallDescription: String
+    let partIn: Bool
+    let phones: [String]
+    let address: String
+    let siteTitle: String
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -25,5 +29,9 @@ struct Mall: Codable {
         case imgURL = "img_url"
         case shopsCount = "shops_count"
         case mallDescription = "description"
+        case partIn = "part_in"
+        case phones
+        case address
+        case siteTitle = "site_title"
     }
 }

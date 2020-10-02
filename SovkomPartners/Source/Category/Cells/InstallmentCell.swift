@@ -55,6 +55,13 @@ class InstallmentCell: UITableViewCell {
         commonInit()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        descriptionLabelStackView.removeAllSubviews()
+        monthLabelStackView.removeAllSubviews()
+    }
+    
     private func commonInit() {
         selectionStyle = .none
         

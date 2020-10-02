@@ -20,6 +20,8 @@ struct PartnerDetail {
     let promosObjects: [PromosObject]?
     let installmentTermsTp: [InstallmentTerm]?
     let shopsCount: Int?
+    let phones: [String]
+    let siteTitle: String
     
     init(shop: Shop) {
         self.id = shop.id
@@ -32,18 +34,22 @@ struct PartnerDetail {
         self.promosObjects = shop.promosObjects
         self.installmentTermsTp = shop.installmentTermsTp
         self.shopsCount = nil
+        self.phones = shop.phones
+        self.siteTitle = shop.siteTitle
     }
     
     init(mall: Mall) {
         self.id = mall.id
         self.name = mall.title
         self.icon = mall.imgURL
-        self.partIn = false
+        self.partIn = mall.partIn
         self.hashtags = nil
         self.descriptionFull = mall.mallDescription
         self.fasComments = nil
         self.promosObjects = nil
         self.installmentTermsTp = nil
         self.shopsCount = mall.shopsCount
+        self.phones = mall.phones
+        self.siteTitle = mall.siteTitle
     }
 }

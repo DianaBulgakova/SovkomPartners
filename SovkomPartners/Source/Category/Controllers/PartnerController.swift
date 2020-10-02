@@ -13,6 +13,9 @@ final class PartnerController: UIViewController {
     
     private var partner: PartnerDetail?
     
+    private var itemsCount = 0
+    private var contacts = [String?]()
+    
     private var sections: [PartnerSection] {
         
         var sections = [PartnerSection]()
@@ -23,7 +26,21 @@ final class PartnerController: UIViewController {
             }
         }
         
-        sections.append(PartnerSection(kind: .contacts, title: "Контакты", itemsCount: 1))
+        if let phones = partner?.phones,
+           let siteTitle = partner?.siteTitle {
+            contacts = [phones.first, siteTitle]
+            if !phones.isEmpty {
+                itemsCount = 1
+            }
+            
+            if !siteTitle.isEmpty {
+                itemsCount = phones.isEmpty ? 1 : 2
+            }
+            
+            if itemsCount > 0 {
+                sections.append(PartnerSection(kind: .contacts, title: "Контакты", itemsCount: itemsCount))
+            }
+        }
         
         sections.append(PartnerSection(kind: .waysToBuy, title: "Способы покупки", itemsCount: 1))
         
@@ -54,7 +71,7 @@ final class PartnerController: UIViewController {
         let view = UITableView(frame: .zero, style: .grouped)
         
         view.register(InstallmentCell.self, forCellReuseIdentifier: InstallmentCell.className)
-        view.register(ContacsCell.self, forCellReuseIdentifier: ContacsCell.className)
+        view.register(ContactsCell.self, forCellReuseIdentifier: ContactsCell.className)
         view.register(WayToBuyCell.self, forCellReuseIdentifier: WayToBuyCell.className)
         view.register(AttributedLabelCell.self, forCellReuseIdentifier: AttributedLabelCell.className)
         view.register(UINib(nibName: HeaderView.reuseIdentifier, bundle: nil), forHeaderFooterViewReuseIdentifier: HeaderView.reuseIdentifier)
@@ -202,7 +219,21 @@ extension PartnerController: UITableViewDelegate, UITableViewDataSource {
             
             return cell
         case .contacts:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ContacsCell.className) as? ContacsCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ContactsCell.className) as? ContactsCell else { return UITableViewCell() }
+            
+            let contact = contacts[indexPath.row]
+            
+            cell.contactLabel.text = contact
+            
+            if itemsCount == 1 {
+                cell.contactLabel.text = partner?.phones.first ?? partner?.siteTitle
+            }
+            
+            if cell.contactLabel.text == partner?.siteTitle {
+                cell.contactView.image = UIImage(named: "partners_details_web")
+            } else {
+                cell.contactView.image = UIImage(named: "partners_details_phone")
+            }
             
             return cell
         case .waysToBuy:

@@ -25,8 +25,8 @@ struct Shop: Codable {
     let fasComments: [String]
     let promosObjects: [PromosObject]
     let installmentTermsTp: [InstallmentTerm]
-//    let phones: [JSONAny]
-    //let site: String
+    let phones: [String]
+    let siteTitle: String
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -39,8 +39,8 @@ struct Shop: Codable {
         case fasComments = "fas_comments"
         case promosObjects = "promos_objects"
         case installmentTermsTp = "installment_terms_tp"
-//        case phones
-        //case site
+        case phones
+        case siteTitle = "site_title"
     }
 }
 
