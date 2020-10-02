@@ -189,6 +189,27 @@ extension CategoryController: UICollectionViewDataSource, UICollectionViewDelega
             return headerView
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
+        guard let category = category else { return }
+        
+        let partner: PartnerDetail
+        
+        if category.isMall {
+            let mall = malls[indexPath.row]
+            
+            partner = PartnerDetail(mall: mall)
+        } else {
+            let shop = shops[indexPath.row]
+            
+            partner = PartnerDetail(shop: shop)
+        }
+        
+        let controller = PartnerController(partner: partner)
+        navigationController?.pushViewController(controller, animated: true)
+        
+    }
 }
 
 extension CategoryController: UICollectionViewDelegateFlowLayout {

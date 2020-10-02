@@ -67,21 +67,7 @@ final class PartnerCell: UICollectionViewCell {
     func setup(mall: Mall) {
         iconView.load(url: mall.imgURL, contentMode: .scaleAspectFit)
         nameLabel.text = mall.title
-        
-        switch mall.shopsCount % 100 {
-        case 11...19:
-            shortNameLabel.text = "\(mall.shopsCount) магазинов"
-        default:
-            switch mall.shopsCount % 10 {
-            case 1:
-                shortNameLabel.text = "\(mall.shopsCount) магазин"
-            case 2, 3, 4:
-                shortNameLabel.text = "\(mall.shopsCount) магазина"
-            default:
-                shortNameLabel.text = "\(mall.shopsCount) магазинов"
-            }
-        }
-        
+        shortNameLabel.text = mall.shopsCount.pluralize(one: "магазин", two: "магазина", many: "магазинов")
         partinImage.isHidden = true
         hashtagLabel.isHidden = true
         hashtagLabel2.isHidden = true

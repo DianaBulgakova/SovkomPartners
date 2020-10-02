@@ -34,4 +34,9 @@ final class PromoCell: UICollectionViewCell {
         iconView.load(url: promo?.imageURL, contentMode: .scaleAspectFill)
         nameLabel.text = promo?.title
     }
+    
+    func setup(promosObject: PromosObject?) {
+        iconView.load(url: promosObject?.imgURL, contentMode: .scaleAspectFill)
+        nameLabel.text = promosObject?.title
+    }
 }

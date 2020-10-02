@@ -92,6 +92,24 @@ final class NetworkManager {
         }
     }
     
+    func shop(id: String, completion: @escaping ((Shop?) -> Void)) {
+        let request = RequestProvider.store(id: id)
+        
+        dataTask(urlRequest: request) { data in
+            if let data = data {
+                do {
+                    let shop = try self.decoder.decode(Shop.self, from: data)
+                    completion(shop)
+                    return
+                } catch {
+                    print(error)
+                }
+            }
+            
+            completion(nil)
+        }
+    }
+    
     func malls(page: Int, completion: @escaping (([Mall]?) -> Void)) {
         let request = RequestProvider.malls(page: page)
         

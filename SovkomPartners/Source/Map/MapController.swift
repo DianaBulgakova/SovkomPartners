@@ -11,6 +11,7 @@ import UIKit
 final class MapController: UIViewController {
     
     private var category: Category?
+    private var partner: PartnerDetail?
     
     convenience init(category: Category?) {
         self.init()
@@ -18,11 +19,17 @@ final class MapController: UIViewController {
         self.category = category
     }
     
+    convenience init(partner: PartnerDetail?) {
+        self.init()
+        
+        self.partner = partner
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
         
-        title = category?.title ?? MainSection.Kind.categories.headerTitle
+        title = partner?.name ?? category?.title ?? MainSection.Kind.categories.headerTitle 
     }
 }
