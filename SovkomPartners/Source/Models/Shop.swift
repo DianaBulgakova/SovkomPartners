@@ -27,6 +27,9 @@ struct Shop: Codable {
     let installmentTermsTp: [InstallmentTerm]
     let phones: [String]
     let siteTitle: String
+    let onlinePayment: Bool
+    let isOnlineStore: Bool
+    let deliveryRussia: Bool
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -41,6 +44,9 @@ struct Shop: Codable {
         case installmentTermsTp = "installment_terms_tp"
         case phones
         case siteTitle = "site_title"
+        case onlinePayment = "online_payment"
+        case isOnlineStore = "is_online_store"
+        case deliveryRussia = "delivery_russia"
     }
 }
 

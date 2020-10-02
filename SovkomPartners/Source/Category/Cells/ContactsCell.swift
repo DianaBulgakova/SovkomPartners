@@ -9,7 +9,7 @@
 import UIKit
 import SwiftClasses
 
-class ContactsCell: UITableViewCell {
+class ContactsCell: TableViewCell {
     
     private(set) lazy var contactView: UIImageView = {
         let image = UIImageView()
@@ -45,10 +45,6 @@ class ContactsCell: UITableViewCell {
     }
     
     private func commonInit() {
-        selectionStyle = .none
-//        showBottomSeparator = true
-//        separatorAlignmentView = contactView
-        
         accessoryType = .disclosureIndicator
         
         contentView.addSubview(contactView)
@@ -58,5 +54,8 @@ class ContactsCell: UITableViewCell {
         contentView.addSubview(contactLabel)
         contactLabel.layout.all.except(.right).equal(to: contentView, offset: UIEdgeInsets(horizontal: Constants.sideOffset + 60, vertical: 10))
         contactLabel.layout.width.equal(to: 200)
+        
+        showBottomSeparator = true
+        separatorAlignmentView = contactView
     }
 }

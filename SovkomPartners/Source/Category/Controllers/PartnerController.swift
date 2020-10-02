@@ -42,7 +42,13 @@ final class PartnerController: UIViewController {
             }
         }
         
-        sections.append(PartnerSection(kind: .waysToBuy, title: "Способы покупки", itemsCount: 1))
+        if let onlinePayment = partner?.onlinePayment,
+           let isOnlineStore = partner?.isOnlineStore,
+           let deliveryRussia = partner?.deliveryRussia {
+            if onlinePayment || isOnlineStore || deliveryRussia {
+                sections.append(PartnerSection(kind: .waysToBuy, title: "Способы покупки", itemsCount: 1))
+            }
+        }
         
         sections.append(PartnerSection(kind: .information, title: "О партнере", itemsCount: 1))
         
@@ -164,7 +170,7 @@ extension PartnerController: UITableViewDelegate, UITableViewDataSource {
         case .contacts:
             return 60
         case .waysToBuy:
-            return 60
+            return 80
         case .information:
             AttributedLabelCell.shared.frame.size.width = tableView.frame.width
             AttributedLabelCell.shared.label.setAttributedTitle(partner?.descriptionFull?.attributedHTML)
@@ -237,7 +243,10 @@ extension PartnerController: UITableViewDelegate, UITableViewDataSource {
             
             return cell
         case .waysToBuy:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: WayToBuyCell.className) as? WayToBuyCell else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: WayToBuyCell.className) as? WayToBuyCell,
+                  let partner = partner else { return UITableViewCell() }
+            
+            cell.setup(partner: partner)
             
             return cell
         case .information:

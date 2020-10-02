@@ -22,6 +22,9 @@ struct PartnerDetail {
     let shopsCount: Int?
     let phones: [String]
     let siteTitle: String
+    let onlinePayment: Bool
+    let isOnlineStore: Bool
+    let deliveryRussia: Bool
     
     init(shop: Shop) {
         self.id = shop.id
@@ -36,6 +39,9 @@ struct PartnerDetail {
         self.shopsCount = nil
         self.phones = shop.phones
         self.siteTitle = shop.siteTitle
+        self.onlinePayment = shop.onlinePayment
+        self.isOnlineStore = shop.isOnlineStore
+        self.deliveryRussia = shop.deliveryRussia
     }
     
     init(mall: Mall) {
@@ -51,5 +57,8 @@ struct PartnerDetail {
         self.shopsCount = mall.shopsCount
         self.phones = mall.phones
         self.siteTitle = mall.siteTitle
+        self.onlinePayment = false
+        self.isOnlineStore = false
+        self.deliveryRussia = false
     }
 }

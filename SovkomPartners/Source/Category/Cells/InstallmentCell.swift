@@ -74,7 +74,7 @@ class InstallmentCell: UITableViewCell {
         
         installmentView.addSubview(monthLabelStackView)
         monthLabelStackView.layout.all.except(.left).equal(to: installmentView, offset: UIEdgeInsets(side: 16))
-        monthLabelStackView.layout.width.equal(to: 70)
+        monthLabelStackView.layout.width.equal(to: 80)
     }
     
     func setup(partner: PartnerDetail) {
@@ -84,6 +84,7 @@ class InstallmentCell: UITableViewCell {
         for installmentTermTp in installmentTermsTp {
             let descriptionLabel = UILabel()
             let monthLabel = UILabel()
+            monthLabel.textAlignment = .left
             
             descriptionLabel.text = installmentTermTp.installmentTermDescription
             descriptionLabelStackView.addArrangedSubview(descriptionLabel)
