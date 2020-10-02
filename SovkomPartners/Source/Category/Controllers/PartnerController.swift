@@ -209,6 +209,8 @@ extension PartnerController: UITableViewDelegate, UITableViewDataSource {
         header.button.title = section.kind.headerButtonTitle
         header.tag = section.kind.rawValue
         
+        header.delegate = self
+        
         return header
     }
     
@@ -262,6 +264,20 @@ extension PartnerController: UITableViewDelegate, UITableViewDataSource {
             cell.promosObjects = partner.promosObjects ?? []
             
             return cell
+        }
+    }
+}
+
+extension PartnerController: HeaderViewDelegate {
+    
+    func buttonTapped(_ header: HeaderView) {
+        guard let section = PartnerSection.Kind(rawValue: header.tag) else { return }
+        
+        switch section {
+        case .installment:
+            Hint.present(content: "+3 месяца рассрочки на любую покупку, Карл!", reference: header.button, superview: view)
+        default:
+            return
         }
     }
 }

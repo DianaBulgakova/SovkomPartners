@@ -33,7 +33,7 @@ extension PartnerSection {
         
         var headerButtonTitle: String? {
             switch self {
-            case .installment: return nil
+            case .installment: return "?"
             case .contacts: return nil
             case .waysToBuy: return nil
             case .information: return nil
