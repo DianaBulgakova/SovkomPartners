@@ -26,6 +26,7 @@ extension PartnerSection {
     enum Kind: Int {
         
         case installment
+        case button
         case contacts
         case waysToBuy
         case information
@@ -34,6 +35,7 @@ extension PartnerSection {
         var headerButtonTitle: String? {
             switch self {
             case .installment: return "?"
+            case .button: return nil
             case .contacts: return nil
             case .waysToBuy: return nil
             case .information: return nil

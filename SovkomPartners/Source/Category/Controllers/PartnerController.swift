@@ -26,6 +26,12 @@ final class PartnerController: UIViewController {
             }
         }
         
+        if let isMall = partner?.isMall {
+            if !isMall {
+                sections.append(PartnerSection(kind: .button, title: nil, itemsCount: 1))
+            }
+        }
+        
         if let phones = partner?.phones,
            let siteTitle = partner?.siteTitle {
             contacts = [phones.first, siteTitle]
@@ -77,6 +83,7 @@ final class PartnerController: UIViewController {
         let view = UITableView(frame: .zero, style: .grouped)
         
         view.register(InstallmentCell.self, forCellReuseIdentifier: InstallmentCell.className)
+        view.register(ShopButtonCell.self, forCellReuseIdentifier: ShopButtonCell.className)
         view.register(ContactsCell.self, forCellReuseIdentifier: ContactsCell.className)
         view.register(WayToBuyCell.self, forCellReuseIdentifier: WayToBuyCell.className)
         view.register(AttributedLabelCell.self, forCellReuseIdentifier: AttributedLabelCell.className)
@@ -167,8 +174,6 @@ extension PartnerController: UITableViewDelegate, UITableViewDataSource {
         switch section.kind {
         case .installment:
             return CGFloat(60 * CGFloat(partner?.installmentTermsTp?.count ?? 0))
-        case .contacts:
-            return 60
         case .waysToBuy:
             return 80
         case .information:
@@ -178,6 +183,8 @@ extension PartnerController: UITableViewDelegate, UITableViewDataSource {
             return AttributedLabelCell.shared.contentHeight
         case .promosOrShops:
             return PartnerPromosCell.height
+        default:
+            return 60
         }
     }
     
@@ -224,6 +231,10 @@ extension PartnerController: UITableViewDelegate, UITableViewDataSource {
                   let partner = partner else { return UITableViewCell() }
             
             cell.setup(partner: partner)
+            
+            return cell
+        case .button:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ShopButtonCell.className) as? ShopButtonCell else { return UITableViewCell() }
             
             return cell
         case .contacts:

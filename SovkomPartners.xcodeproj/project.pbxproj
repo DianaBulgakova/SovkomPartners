@@ -40,6 +40,7 @@
 		8453FCF62523C8B80077FFA8 /* WayToBuyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8453FCF52523C8B80077FFA8 /* WayToBuyCell.swift */; };
 		8453FCF92523CA990077FFA8 /* PartnerPromosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8453FCF82523CA990077FFA8 /* PartnerPromosCell.swift */; };
 		8453FD072525BA860077FFA8 /* PartnerDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8453FD062525BA860077FFA8 /* PartnerDetail.swift */; };
+		8453FD192528BD660077FFA8 /* ShopButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8453FD182528BD660077FFA8 /* ShopButtonCell.swift */; };
 		847AC520251CB12D001DA17A /* GoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847AC51E251CB12D001DA17A /* GoodCell.swift */; };
 		847AC521251CB12D001DA17A /* GoodCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 847AC51F251CB12D001DA17A /* GoodCell.xib */; };
 		847AC52C251F45E3001DA17A /* PromoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847AC52B251F45E3001DA17A /* PromoHeader.swift */; };
@@ -101,6 +102,7 @@
 		8453FCF52523C8B80077FFA8 /* WayToBuyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayToBuyCell.swift; sourceTree = "<group>"; };
 		8453FCF82523CA990077FFA8 /* PartnerPromosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerPromosCell.swift; sourceTree = "<group>"; };
 		8453FD062525BA860077FFA8 /* PartnerDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerDetail.swift; sourceTree = "<group>"; };
+		8453FD182528BD660077FFA8 /* ShopButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopButtonCell.swift; sourceTree = "<group>"; };
 		847AC51E251CB12D001DA17A /* GoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodCell.swift; sourceTree = "<group>"; };
 		847AC51F251CB12D001DA17A /* GoodCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoodCell.xib; sourceTree = "<group>"; };
 		847AC52B251F45E3001DA17A /* PromoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoHeader.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				8453FCEE2523C6CB0077FFA8 /* InstallmentCell.swift */,
+				8453FD182528BD660077FFA8 /* ShopButtonCell.swift */,
 				8453FCF22523C7FA0077FFA8 /* ContactsCell.swift */,
 				8453FCF52523C8B80077FFA8 /* WayToBuyCell.swift */,
 				8453FCF82523CA990077FFA8 /* PartnerPromosCell.swift */,
@@ -619,6 +622,7 @@
 				8453FCF92523CA990077FFA8 /* PartnerPromosCell.swift in Sources */,
 				84FF2FA0250A5B5500A89910 /* MapController.swift in Sources */,
 				84FF2FBE251CA05400A89910 /* GoodsCell.swift in Sources */,
+				8453FD192528BD660077FFA8 /* ShopButtonCell.swift in Sources */,
 				842F1BAA2503A68800689CCB /* PromoCell.swift in Sources */,
 				84FF2F7E2507B56B00A89910 /* Shop.swift in Sources */,
 				84FF2FC2251CA08F00A89910 /* ParthersCell.swift in Sources */,
