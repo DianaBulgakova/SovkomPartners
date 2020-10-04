@@ -27,6 +27,7 @@ extension PartnerSection {
         
         case installment
         case button
+        case address
         case contacts
         case waysToBuy
         case information
@@ -35,6 +36,7 @@ extension PartnerSection {
         var headerButtonTitle: String? {
             switch self {
             case .installment: return "?"
+            case .address: return nil
             case .button: return nil
             case .contacts: return nil
             case .waysToBuy: return nil

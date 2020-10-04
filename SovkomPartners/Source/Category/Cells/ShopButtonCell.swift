@@ -17,7 +17,6 @@ class ShopButtonCell: UITableViewCell {
         button.clipsToBounds = true
         button.layer.cornerRadius = 10
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        
         button.setTitle("Перейти в магазин", for: .normal)
         button.titleColor = .black
         

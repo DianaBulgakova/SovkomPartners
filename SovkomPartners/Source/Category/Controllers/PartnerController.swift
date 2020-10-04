@@ -27,7 +27,9 @@ final class PartnerController: UIViewController {
         }
         
         if let isMall = partner?.isMall {
-            if !isMall {
+            if isMall {
+                sections.append(PartnerSection(kind: .address, title: nil, itemsCount: 1))
+            } else {
                 sections.append(PartnerSection(kind: .button, title: nil, itemsCount: 1))
             }
         }
@@ -84,6 +86,7 @@ final class PartnerController: UIViewController {
         
         view.register(InstallmentCell.self, forCellReuseIdentifier: InstallmentCell.className)
         view.register(ShopButtonCell.self, forCellReuseIdentifier: ShopButtonCell.className)
+        view.register(MallAddressCell.self, forCellReuseIdentifier: MallAddressCell.className)
         view.register(ContactsCell.self, forCellReuseIdentifier: ContactsCell.className)
         view.register(WayToBuyCell.self, forCellReuseIdentifier: WayToBuyCell.className)
         view.register(AttributedLabelCell.self, forCellReuseIdentifier: AttributedLabelCell.className)
@@ -174,10 +177,10 @@ extension PartnerController: UITableViewDelegate, UITableViewDataSource {
         switch section.kind {
         case .installment:
             return CGFloat(60 * CGFloat(partner?.installmentTermsTp?.count ?? 0))
-        case .button:
+        case .button, .waysToBuy:
             return 80
-        case .waysToBuy:
-            return 80
+        case .address:
+            return 100
         case .information:
             AttributedLabelCell.shared.frame.size.width = tableView.frame.width
             AttributedLabelCell.shared.label.setAttributedTitle(partner?.descriptionFull?.attributedHTML)
@@ -233,6 +236,12 @@ extension PartnerController: UITableViewDelegate, UITableViewDataSource {
                   let partner = partner else { return UITableViewCell() }
             
             cell.setup(partner: partner)
+            
+            return cell
+        case .address:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MallAddressCell.className) as? MallAddressCell else { return UITableViewCell() }
+            
+            cell.addressLabel.text = partner?.address
             
             return cell
         case .button:
