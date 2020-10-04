@@ -174,6 +174,8 @@ extension PartnerController: UITableViewDelegate, UITableViewDataSource {
         switch section.kind {
         case .installment:
             return CGFloat(60 * CGFloat(partner?.installmentTermsTp?.count ?? 0))
+        case .button:
+            return 80
         case .waysToBuy:
             return 80
         case .information:

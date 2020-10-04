@@ -16,6 +16,7 @@ class ShopButtonCell: UITableViewCell {
         button.backgroundColor = .lightGray
         button.clipsToBounds = true
         button.layer.cornerRadius = 10
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         
         button.setTitle("Перейти в магазин", for: .normal)
         button.titleColor = .black
@@ -40,7 +41,7 @@ class ShopButtonCell: UITableViewCell {
         selectionStyle = .none
         
         contentView.addSubview(button)
-        button.layout.vertical.equal(to: contentView)
+        button.layout.vertical.equal(to: contentView, offset: (first: 20, second: 0))
         button.layout.horizontal.equal(to: contentView, offset: Constants.sideOffset)
     }
 }
