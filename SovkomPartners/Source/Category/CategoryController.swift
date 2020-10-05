@@ -198,6 +198,7 @@ extension CategoryController: UICollectionViewDataSource, UICollectionViewDelega
         
         if category.isMall {
             let mall = malls[indexPath.row]
+            print(mall.id)
             
             partner = PartnerDetail(mall: mall)
         } else {

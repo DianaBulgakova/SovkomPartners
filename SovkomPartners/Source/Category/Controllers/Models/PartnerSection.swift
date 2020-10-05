@@ -31,7 +31,8 @@ extension PartnerSection {
         case contacts
         case waysToBuy
         case information
-        case promosOrShops
+        case promos
+        case shops
         
         var headerButtonTitle: String? {
             switch self {
@@ -41,7 +42,8 @@ extension PartnerSection {
             case .contacts: return nil
             case .waysToBuy: return nil
             case .information: return nil
-            case .promosOrShops: return nil
+            case .promos: return nil
+            case .shops: return nil
             }
         }
     }

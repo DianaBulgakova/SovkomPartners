@@ -11,10 +11,19 @@ import SwiftClasses
 
 final class PartnerController: UIViewController {
     
+    private var canLoadMore = false
+    private var page = 0
+    
     private var partner: PartnerDetail?
     
     private var itemsCount = 0
     private var contacts = [String?]()
+    
+    private var shops = [Shop]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     private var sections: [PartnerSection] {
         
@@ -58,11 +67,29 @@ final class PartnerController: UIViewController {
             }
         }
         
-        sections.append(PartnerSection(kind: .information, title: "О партнере", itemsCount: 1))
+        if let isMall = partner?.isMall {
+            if isMall {
+                sections.append(PartnerSection(kind: .information, title: "О торговом центре", itemsCount: 1))
+            } else {
+                if let partnerFasComments = partner?.fasComments {
+                    if partnerFasComments.isEmpty {
+                        sections.append(PartnerSection(kind: .information, title: "О партнере", itemsCount: 1))
+                    } else {
+                        sections.append(PartnerSection(kind: .information, title: "О партнере", itemsCount: 2))
+                    }
+                }
+            }
+        }
         
-        if let shopPromoObjects = partner?.promosObjects {
-            if !shopPromoObjects.isEmpty {
-                sections.append(PartnerSection(kind: .promosOrShops, title: "Акции и скидки", itemsCount: 1))
+        if let isMall = partner?.isMall {
+            if isMall {
+                sections.append(PartnerSection(kind: .shops, title: "Магазины", itemsCount: 1))
+            } else {
+                if let shopPromoObjects = partner?.promosObjects {
+                    if !shopPromoObjects.isEmpty {
+                        sections.append(PartnerSection(kind: .promos, title: "Акции и скидки", itemsCount: 1))
+                    }
+                }
             }
         }
         
@@ -92,12 +119,15 @@ final class PartnerController: UIViewController {
         view.register(AttributedLabelCell.self, forCellReuseIdentifier: AttributedLabelCell.className)
         view.register(UINib(nibName: HeaderView.reuseIdentifier, bundle: nil), forHeaderFooterViewReuseIdentifier: HeaderView.reuseIdentifier)
         view.register(PartnerPromosCell.self, forCellReuseIdentifier: PartnerPromosCell.className)
+        view.register(PartnerShopsCell.self, forCellReuseIdentifier: PartnerShopsCell.className)
         
         view.delegate = self
         view.dataSource = self
         
         view.separatorStyle = .none
         view.backgroundColor = .white
+        
+        view.refreshControl = refreshControl
         
         return view
     }()
@@ -112,6 +142,15 @@ final class PartnerController: UIViewController {
         return button
     }()
     
+    private lazy var refreshControl: UIRefreshControl = {
+        let refresh = UIRefreshControl()
+        
+        refresh.tintColor = .gray
+        refresh.addTarget(self, action: #selector(updateInfo), for: .valueChanged)
+        
+        return refresh
+    }()
+    
     convenience init(partner: PartnerDetail?) {
         self.init()
         
@@ -124,13 +163,17 @@ final class PartnerController: UIViewController {
         setupNavigation()
         
         setupViews()
+        
+        view.showActivityIndicator()
+        updateInfo()
     }
     
     private func setupNavigation() {
-        
         title = partner?.name
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: mapButton)
+        if let isMall = partner?.isMall {
+            navigationItem.rightBarButtonItem = isMall ? nil : UIBarButtonItem(customView: mapButton)
+        }
     }
     
     private func setupViews() {
@@ -150,6 +193,26 @@ final class PartnerController: UIViewController {
         
         guard let partner = partner else { return }
         headerView.setup(partner: partner)
+    }
+    
+    @objc
+    private func updateInfo() {
+        guard let partner = partner else { return }
+        
+        if partner.isMall {
+            NetworkManager.shared.storesForMall(mallId: partner.id, page: page) { [weak self] shops in
+                guard let self = self else { return }
+                
+                let newShops = shops ?? []
+                self.shops += newShops
+                self.canLoadMore = Constants.paginationLimit == newShops.count
+                self.page += 1
+                self.view.hideActivityIndicator()
+                self.refreshControl.endRefreshing()
+            }
+        } else {
+            self.view.hideActivityIndicator()
+        }
     }
     
     @objc
@@ -186,8 +249,10 @@ extension PartnerController: UITableViewDelegate, UITableViewDataSource {
             AttributedLabelCell.shared.label.setAttributedTitle(partner?.descriptionFull?.attributedHTML)
             
             return AttributedLabelCell.shared.contentHeight
-        case .promosOrShops:
+        case .promos:
             return PartnerPromosCell.height
+        case .shops:
+            return Constants.collectionCellHeight + 20
         default:
             return 60
         }
@@ -276,14 +341,25 @@ extension PartnerController: UITableViewDelegate, UITableViewDataSource {
         case .information:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AttributedLabelCell.className) as? AttributedLabelCell else { return UITableViewCell() }
             
-            cell.label.setAttributedTitle(partner?.descriptionFull?.attributedHTML)
+            switch indexPath.row {
+            case 0:
+                cell.label.setAttributedTitle(partner?.descriptionFull?.attributedHTML)
+            default:
+                cell.label.setAttributedTitle(partner?.fasComments?.first?.attributedHTML)
+            }
             
             return cell
-        case .promosOrShops:
+        case .promos:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PartnerPromosCell.className) as? PartnerPromosCell,
                   let partner = partner else { return UITableViewCell() }
             
             cell.promosObjects = partner.promosObjects ?? []
+            
+            return cell
+        case .shops:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: PartnerShopsCell.className) as? PartnerShopsCell else { return UITableViewCell() }
+            
+            cell.shops = shops
             
             return cell
         }

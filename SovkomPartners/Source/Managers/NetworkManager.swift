@@ -92,14 +92,14 @@ final class NetworkManager {
         }
     }
     
-    func shop(id: String, completion: @escaping ((Shop?) -> Void)) {
-        let request = RequestProvider.store(id: id)
+    func malls(page: Int, completion: @escaping (([Mall]?) -> Void)) {
+        let request = RequestProvider.malls(page: page)
         
         dataTask(urlRequest: request) { data in
             if let data = data {
                 do {
-                    let shop = try self.decoder.decode(Shop.self, from: data)
-                    completion(shop)
+                    let mall = try self.decoder.decode(MallRequest.self, from: data)
+                    completion(mall.malls)
                     return
                 } catch {
                     print(error)
@@ -110,14 +110,14 @@ final class NetworkManager {
         }
     }
     
-    func malls(page: Int, completion: @escaping (([Mall]?) -> Void)) {
-        let request = RequestProvider.malls(page: page)
+    func storesForMall(mallId: String, page: Int, completion: @escaping (([Shop]?) -> Void)) {
+        let request = RequestProvider.storesForMall(mallId: mallId, page: page)
         
         dataTask(urlRequest: request) { data in
             if let data = data {
                 do {
-                    let mall = try self.decoder.decode(MallRequest.self, from: data)
-                    completion(mall.malls)
+                    let shop = try self.decoder.decode(ShopRequest.self, from: data)
+                    completion(shop.shops)
                     return
                 } catch {
                     print(error)
